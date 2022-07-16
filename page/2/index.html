@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>cjy的小屋</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="cjy的小屋"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="cjy的小屋"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="cjy的小屋"><meta property="og:url" content="https://jy324.github.io/"><meta property="og:site_name" content="cjy的小屋"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jy324.github.io/img/avatar.png"><meta property="article:author" content="cjy324"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/avatar.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jy324.github.io"},"headline":"cjy的小屋","image":["https://jy324.github.io/img/og_image.png"],"author":{"@type":"Person","name":"cjy324"},"description":""}</script><link rel="icon" href="/img/favicon.svg"><meta name="referrer" content="no-referrer-when-downgrade"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="cjy的小屋" type="application/atom+xml">
+</head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="cjy的小屋" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/album">Album</a><a class="navbar-item" href="/friend">友链</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><!--!--><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Notes/Linux-%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE.html#comment-container"><span class="display-none-class">/Notes/Linux-头文件位置.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="5aa68bf5ccd03d4a0b0777e00418bd71">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>2 分钟  <i class="fas fa-pencil-alt"> </i>0.2 k</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Notes/Linux-%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE.html">Linux 头文件位置</a></h1><div class="content"><blockquote>
+<p>今天想要找<code>&lt;sys/ipc.h&gt;</code>，开始在 <code>/usr/include</code> 的一堆头文件中找不到，后来知道了 sys 是目录，ipc.h 才是其文件名，上网搜索，得知在 &#96;&#96;.&#x2F;x86_64-linux-gnu&#96;中。记录一下，以防忘记。</p>
+</blockquote>
+<p>Linux 中<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%A4%B4%E6%96%87%E4%BB%B6&spm=1001.2101.3001.7020">头文件</a>的目录分为<strong>两类</strong>：</p>
+<ul>
+<li>内核源码中的头文件，比如驱动中包含的头文件；</li>
+<li>应用软件中包含的头文件。</li>
+</ul>
+<p>我们平常写代码用的都是软件中包含的头文件，路径为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/include</span><br></pre></td></tr></table></figure>
+
+<p>内核源码的头文件路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 编译 C 文件或 C++ 文件时都会搜索以下五个路径</span><br><span class="line">/usr/local/include</span><br><span class="line">/usr/lib/gcc/x86_64-linux-gnu/7/include</span><br><span class="line">/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed</span><br><span class="line">/usr/include</span><br><span class="line">/usr/include/x86_64-linux-gnu</span><br><span class="line"></span><br><span class="line"># 编译 C++ 文件时才会搜索以下三个路径</span><br><span class="line">/usr/include/x86_64-linux-gnu/c++/7 </span><br><span class="line">/usr/include/c++/7</span><br><span class="line">/usr/include/c++/7/backward</span><br></pre></td></tr></table></figure>
+</div><div class="index-category-tag"><div class="level-item"><i class="fas fa-folder-open has-text-grey"> </i><a class="article-more button is-small link-muted index-categories" href="/categories/Notes/">Notes</a></div>  <div class="level-item"><i class="fas fa-tags has-text-grey"> </i><a class="article-more button is-small link-muted index-tags" href="/tags/C-%E8%AF%AD%E8%A8%80/">C 语言</a><span> </span><a class="article-more button is-small link-muted index-tags" href="/tags/Linux/">Linux</a></div><hr></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Notes/include-guard.html#comment-container"><span class="display-none-class">/Notes/include-guard.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="97869589f032368e7ed648bff29d65e3">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>5 分钟  <i class="fas fa-pencil-alt"> </i>0.8 k</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Notes/include-guard.html">include guard</a></h1><div class="content"><p>来源：<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Include_guard">https://en.wikipedia.org/wiki/Include_guard</a></p>
+<p>记录以下自己看了啥，怕以后忘了，绝对不是想要水博客。</p>
+<p>In the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a> and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a> programming languages, an <strong>#include guard</strong>, sometimes called a <strong>macro guard</strong>, <strong>header guard</strong> or <strong>file guard</strong>, is a particular construct used to avoid the problem of <em>double inclusion</em> when dealing with the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Include_directive">include directive</a>.</p>
+<p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/C_preprocessor">C preprocessor</a> processes <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Preprocessor_directive">directives</a> of the form <code>#include &lt;file&gt;</code> in a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Source_file">source file</a> by locating the associated <code>file</code> on <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/File_system">disk</a> and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Transclusion">transcluding</a> (“including”) its contents into a copy of the source file known as the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Translation_unit_(programming)">translation unit</a>, replacing the include directive in the process. The files included in this regard are generally <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Header_file">header files</a>, which typically contain <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Declaration_(computer_programming)">declarations</a> of <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Function_(computer_programming)">functions</a> and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Class_(computer_programming)">classes</a> or <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Struct">structs</a>. If certain C or C++ language constructs <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/One_Definition_Rule">are defined twice</a>, the resulting translation unit <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Compilation_error">is invalid</a>. #include guards prevent this erroneous construct from arising by the double inclusion mechanism.</p>
+<p>The addition of #include guards to a header file is one way to make that file <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Idempotent">idempotent</a>. Another construct to combat <em>double inclusion</em> is <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pragma_once">#pragma once</a>, which is non-standard but nearly universally supported among C and C++ <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/List_of_compilers">compilers</a>.</p>
+<h2 id="Use-of-include-guards"><a href="#Use-of-include-guards" class="headerlink" title="Use of #include guards"></a>Use of #include guards</h2><h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>In this section, the same code is used with the addition of #include guards. The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/C_preprocessor">C preprocessor</a> preprocesses the header files, including and further preprocessing them <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Recursion_(computer_science)">recursively</a>. This will result in a correct source file, as we will see.</p>
+<h4 id="File-“grandparent-h”"><a href="#File-“grandparent-h”" class="headerlink" title="File “grandparent.h”"></a>File “grandparent.h”</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#ifndef GRANDPARENT_H</span><br><span class="line">#define GRANDPARENT_H</span><br><span class="line"></span><br><span class="line">struct foo &#123;</span><br><span class="line">    int member;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#endif /* GRANDPARENT_H */</span><br></pre></td></tr></table></figure>
+
+<h4 id="File-“parent-h”"><a href="#File-“parent-h”" class="headerlink" title="File “parent.h”"></a>File “parent.h”</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;grandparent.h&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="File-“child-c”"><a href="#File-“child-c”" class="headerlink" title="File “child.c”"></a>File “child.c”</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;grandparent.h&quot;</span><br><span class="line">#include &quot;parent.h&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct foo &#123;</span><br><span class="line">    int member;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Here, the first inclusion of “grandparent.h” has the macro <code>GRANDPARENT_H</code> defined. When “child.c” includes “grandparent.h” at the second time, as the <code>#ifndef</code> test returns false, the preprocessor skips down to the <code>#endif</code>, thus avoiding the second definition of <code>struct foo</code>. The program compiles correctly.</p>
+<h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3><p>Different <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Naming_conventions_(programming)">naming conventions</a> for the guard <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Macro_(computer_science)">macro</a> may be used by different <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Programmer">programmers</a>. Other common forms of the above example include <code>GRANDPARENT_INCLUDED</code>, <code>CREATORSNAME_YYYYMMDD_HHMMSS</code> (with the appropriate time information substituted), and names generated from a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Universally_Unique_Identifier">UUID</a>. (However, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Identifier_(computer_programming)">names</a> starting with one underscore and a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Capital_letter">capital letter</a> or any name containing double underscore, such as <code>_GRANDPARENT__H</code> and <code>__GRANDPARENT_H</code>, are reserved to the language implementation and should not be used by the user.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Include_guard#cite_note-1">1]</a>[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Include_guard#cite_note-2">2]</a>)</p>
+<p>Of course, it is important to avoid duplicating the same include-guard macro name in different header files, as including the 1st will prevent the 2nd from being included, leading to the loss of any declarations, inline definitions, or other #includes in the 2nd header.</p>
+<h2 id="Difficulties"><a href="#Difficulties" class="headerlink" title="Difficulties"></a>Difficulties</h2><p>In order for #include guards to work properly, each guard must test and conditionally set a different preprocessor macro. Therefore, a project using #include guards must work out a coherent naming scheme for its include guards, and make sure its scheme doesn’t conflict with that of any third-party headers it uses, or with the names of any globally visible macros.</p>
+<p>For this reason, most C and C++ implementations provide a non-standard <code>#pragma once</code> directive. This directive, inserted at the top of a header file, will ensure that the file is included only once.</p>
+</div><div class="index-category-tag"><div class="level-item"><i class="fas fa-folder-open has-text-grey"> </i><a class="article-more button is-small link-muted index-categories" href="/categories/Notes/">Notes</a></div>  <div class="level-item"><i class="fas fa-tags has-text-grey"> </i><a class="article-more button is-small link-muted index-tags" href="/tags/C-%E8%AF%AD%E8%A8%80/">C 语言</a></div><hr></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Idealism/%E9%87%8D%E8%AF%BB%E5%85%B1%E4%BA%A7%E5%85%9A%E5%AE%A3%E8%A8%80.html#comment-container"><span class="display-none-class">/Idealism/重读共产党宣言.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="1b78c058d7e0071c8df0b8e67ecfe379">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>几秒  <i class="fas fa-pencil-alt"> </i>0.0 k</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Idealism/%E9%87%8D%E8%AF%BB%E5%85%B1%E4%BA%A7%E5%85%9A%E5%AE%A3%E8%A8%80.html">重读共产党宣言</a></h1><div class="content">
+
+	<div class="row">
+    <embed src="../../pdf/共产党宣言.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+</div><div class="index-category-tag"><div class="level-item"><i class="fas fa-folder-open has-text-grey"> </i><a class="article-more button is-small link-muted index-categories" href="/categories/Idealism/">Idealism</a></div>  <div class="level-item"><i class="fas fa-tags has-text-grey"> </i><a class="article-more button is-small link-muted index-tags" href="/tags/Revolution/">Revolution</a><span> </span><a class="article-more button is-small link-muted index-tags" href="/tags/Historical-Documents/">Historical Documents</a></div><hr></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Ideas/%E5%AE%9E%E8%B7%B5.html#comment-container"><span class="display-none-class">/Ideas/实践.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="a555aa4138a2aaf0d795f2e2244bc1a8">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>5 分钟  <i class="fas fa-pencil-alt"> </i>0.8 k</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Ideas/%E5%AE%9E%E8%B7%B5.html">实践</a></h1><div class="content"><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/531443999/answer/2472301817">教育部要求 9 月起中小学生要学煮饭，制作 2~3 道家常菜，修理家电等，具有哪些积极意义？</a></p>
+</blockquote>
+<p>非常支持在现有的基础教育中增加基础的劳动技能。而且占比应该大幅的提高，比重应该大大的加重。</p>
+<p>只是要注意，要均衡学习量，把其它<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E7%90%86%E8%AE%BA%E8%AF%BE&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:2472301817%7D">理论课</a>的负担对应的下降，保持总负担不变。</p>
+<p>而不应该是别的要求照旧，只是额外增加这个负担。</p>
+<p>现有的学习负担本身很重，在这个基础上如果是额外增加这个要求，可想而知是会被虚与委蛇的绕过的，起不到什么正面的效果。</p>
+<p>如果能对称的降低一些其它理论课程的考核内容，给这个劳动技能教育让出空间来，那是一种很好的改进。</p>
+<p>基本的劳动技能对个人的成长——尤其是心理发育——有至关重要且不可替代的意义。它是人的基本安全感的可靠来源。</p>
+<p>人不劳动，没有基本的煎炒煮炸、钻刨磨焊、粘接缝补的常识和体验，对价值的感受就是虚无和抽象的，<strong>极易脱离现实、陷入茫然。</strong></p>
+<p>你仔细观察，会发现很多有学术成就的人在小时候有务农务工的经历。驱使他们学习和研究的动力在于ta们坚信自己的成果能大幅的改善某种劳动的代价或者成果。</p>
+<p>学习种种纯理论知识，因为缺少对劳动生产的最基本常识，基本必然会沦为抽象的智力游戏，成为一种纯粹的避免被家长责备、赚取同学羡慕的杂技。</p>
+<p>一旦这些东西失去吸引或者找到了别的心里替代品，学习的动力就会大幅丧失，不知道自己学这个到底有什么价值、有什么用。</p>
+<p>我们现有的教育对这一点忽略太久，极端的偏向纯粹的理论计算，经常会造成学到九成九的学生只想打游戏自我麻醉了此残生的无效结果。</p>
+<p>你所学的是因为对劳动的价值而有不可磨灭的价值，不是对你爹妈有价值而有不可磨灭的价值。</p>
+<p>后者只要你爹妈跟你闹翻就一钱不值了。</p>
+<p>而你爹妈迟早是要跟你闹一次翻的。</p>
+<p>另一方面，这也是对长期沉浸在高强度理论学习里的青少年的一个很好的调节，有利于劳逸结合。</p>
+<p>所以，即使学校不教、教委不考，父母自己也应该自己教好。</p>
+<p>能由学校来完成是一件好事。</p>
+</div><div class="index-category-tag"><div class="level-item"><i class="fas fa-folder-open has-text-grey"> </i><a class="article-more button is-small link-muted index-categories" href="/categories/Ideas/">Ideas</a></div>  <div class="level-item"><i class="fas fa-tags has-text-grey"> </i><a class="article-more button is-small link-muted index-tags" href="/tags/Practice/">Practice</a><span> </span><a class="article-more button is-small link-muted index-tags" href="/tags/Social-Experience/">Social Experience</a><span> </span><a class="article-more button is-small link-muted index-tags" href="/tags/Growing-up/">Growing up</a></div><hr></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Idealism/%E4%BA%94%E5%9B%9B%E9%9A%8F%E6%84%9F.html#comment-container"><span class="display-none-class">/Idealism/五四随感.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="fd6b72dc6d081b15e454cf114538de83">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>5 分钟  <i class="fas fa-pencil-alt"> </i>0.7 k</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Idealism/%E4%BA%94%E5%9B%9B%E9%9A%8F%E6%84%9F.html">五四随感</a></h1><div class="content"><p>教员和我们一样，是人，不是神，从改良到革命，从康梁到马克思，从激进的“立三路线”到农村包围城市，他摸索了十多年，经历了很多失败和坎坷，才终于走出了属于中国人自己的共产主义道路。以至于有一段时间他的选集在国统区的封面是《大乘起信论》，因为这本书是写佛教中国化的著作，而他的书是马列主义中国化的著作。</p>
+<p>1945年，在重庆谈判期间，教员忙里偷闲，拉上周总理组织了一次“学生社团聚会”，这个社团名叫少年中国学会，少年中国学会是当时在北京的一批大学生在一起讨论时政的社团。由于有李大钊牵头，这个小团体一度发展到106人。可经历了二十多年的战乱，仅7个发起人中，就已经有4人死于战火兵灾。教员后来在诗词和文章中回忆，这场宴席，让他想起了跟自己结识、同行再到分道扬镳的朋友们。</p>
+<p>从维新变法开始，对于“如何救中国”这个问题，中国历代的精英们经历了不屈不挠的探索，几乎每一种主义都试了个遍，几乎每前进一步，都要付出无数的鲜血。它就像一道难于登天的数学题，被无数的聪明人思考过，谭嗣同作为维新派虽然失败了，但是他教出了一个好徒弟杨昌济，杨昌济又教出了教员。薪火相传，这个接力棒传到了教员手上，他终于找到了问题的答案。</p>
+<p>回到一开始那个问题上来，很多90后开始读《毛选》，是为了什么呢？是为了考研的时候能多得几分？是为了自己升官发财，平步青云？是为了找到建设有战斗力团队的秘诀？还是为了能找到解决现在社会问题的良药？我想，每个人都有自己的目的，但无论如何，我们每一个人都或多或少学习过他的思想，是他的学生。新的时代有新的问题，面对着内外强敌的压力，我们终究要和教员当初一样，在结合前辈探索的同时靠自己的力量找到那个答案。</p>
+<p>我们不是他，但我们每个人都要努力成为他。</p>
+<hr>
+<p>以此纪念2022五四青年节。</p>
+<p>摘自：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14S4y1M7Fq">https://www.bilibili.com/video/BV14S4y1M7Fq</a></p>
+</div><div class="index-category-tag"><div class="level-item"><i class="fas fa-folder-open has-text-grey"> </i><a class="article-more button is-small link-muted index-categories" href="/categories/Idealism/">Idealism</a></div>  <div class="level-item"><i class="fas fa-tags has-text-grey"> </i><a class="article-more button is-small link-muted index-tags" href="/tags/Revolution/">Revolution</a><span> </span><a class="article-more button is-small link-muted index-tags" href="/tags/Historical-Documents/">Historical Documents</a></div><hr></div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/Idealism/%E9%99%B3%E7%8D%A8%E7%A7%80-%E3%80%8A%E6%96%B0%E9%9D%92%E5%B9%B4%E3%80%8B%E7%99%BC%E5%88%8A%E8%A9%9E-%E6%95%AC%E5%91%8A%E9%9D%92%E5%B9%B4.html"><img class="fill" src="https://s2.loli.net/2022/06/21/VWd97joqJSiLZnm.jpg" alt="陳獨秀 《新青年》發刊詞 敬告青年"></a></div><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Idealism/%E9%99%B3%E7%8D%A8%E7%A7%80-%E3%80%8A%E6%96%B0%E9%9D%92%E5%B9%B4%E3%80%8B%E7%99%BC%E5%88%8A%E8%A9%9E-%E6%95%AC%E5%91%8A%E9%9D%92%E5%B9%B4.html#comment-container"><span class="display-none-class">/Idealism/陳獨秀-《新青年》發刊詞-敬告青年.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="4b015dec1f4f3c8c40740c917d55d37d">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>25 分钟  <i class="fas fa-pencil-alt"> </i>3.7 k</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Idealism/%E9%99%B3%E7%8D%A8%E7%A7%80-%E3%80%8A%E6%96%B0%E9%9D%92%E5%B9%B4%E3%80%8B%E7%99%BC%E5%88%8A%E8%A9%9E-%E6%95%AC%E5%91%8A%E9%9D%92%E5%B9%B4.html">陳獨秀 《新青年》發刊詞 敬告青年</a></h1><div class="content"><p>青年如初春，如朝日，如百卉之萌动，如利刃之新发于硎，人生最可宝贵之时期也。青年之于社会，犹新鲜活泼细胞之在人身。新陈代谢，陈腐朽败者无时不在天然淘汰之途，与新鲜活泼者以空间之位置及时间之生命。人身遵新陈代谢之道则健康，陈腐朽败之细胞充塞人身则人身死；社会遵新陈代谢之道则隆盛，陈腐朽败之分子充塞社会则社会亡。</p>
+<p> 准斯以谈，吾国之社会，其隆盛耶？抑将亡耶？非予之所忍言者。彼陈腐朽败之分子，一听其天然之淘汰，雅不愿以如流之岁月，与之说短道长，希冀其脱胎换骨也。予所欲涕泣陈词者，惟属望于新鲜活泼之青年，有以自觉而奋斗耳!</p>
+<p>自觉者何？自觉其新鲜活泼之价值与责任，而自视不可卑也。奋斗者何？奋其智能，力排陈腐朽败者以去，视之若仇敌，若洪水猛兽，而不可与为邻，而不为其菌毒所传染也。</p>
+<p> 呜呼!吾国之青年，其果能语于此乎!吾见夫青年其年龄，而老年其身体者十之五焉；青年其年龄或身体，而老年其脑神经者十之九焉。华其发，泽其容，直其腰，广其膈，非不俨然青年也；及叩其头脑中所涉想，所怀抱，无一不与彼陈腐朽败者为一丘之貉。其始也未尝不新鲜活泼，寝假而为陈腐朽败分子所同化者，有之；寝假而畏陈腐朽败分子势力之庞大，瞻顾依回，不敢明目张胆作顽狠之抗斗者，有之。充塞社会之空气，无往而非陈腐朽败焉，求些少之新鲜活泼者，以慰吾人窒息之绝望，亦杳不可得。</p>
+<p> 循斯现象，于人身则必死，于社会则必亡。欲救此病，非太息咨嗟之所能济，是在一二敏于自觉、勇于奋斗之青年，发挥人间固有之智能，决择人间种种之思想，——孰为新鲜活泼而适于今世之争存，孰为陈腐朽败而不容留置于脑里，——利刃断铁，快刀理麻，决不作牵就依违之想，自度度人，社会庶几其有清宁之日也。青年乎!其有以此自任者乎？若夫明其是非，以供决择，谨陈六义，幸平心察之。</p>
+<h3 id="自主的而非奴隶的"><a href="#自主的而非奴隶的" class="headerlink" title="自主的而非奴隶的"></a>自主的而非奴隶的</h3><p>等一人也，各有自主之权，绝无奴隶他人之权利，亦绝无以奴自处之义务。奴隶云者，古之昏弱对于强暴之横夺，而失其自由权利者之称也。自人权平等之说兴，奴隶之名，非血气所忍受。世称近世欧洲历史为“解放历史”——破坏君权，求政治之解放也；否认教权，求宗教之解放也；均产说兴，求经济之解放也；女子参政运动，求男权之解放也。</p>
+<p>解放云者，脱离夫奴隶之羁绊，以完其自主自由之人格之谓也。我有手足，自谋温饱；我有口舌，自陈好恶；我有心思，自崇所信；绝不认他人之越俎，亦不应主我而奴他人；盖自认为独立自主之人格以上，一切操行，一切权利，一切信仰，唯有听命各自固有之智能，断无盲从隶属他人之理。非然者，忠孝节义，奴隶之道德也(德国大哲尼采〔Ｎietzsche〕别道德为二类：有独立心而勇敢者曰贵族道德〔Morality of Noble〕,谦逊而服从者曰奴隶道德〔Morality of Slave〕)；轻刑薄赋，奴隶之幸福也；称颂功德，奴隶之文章也；拜爵赐第，奴隶之光荣也；丰碑高墓，奴隶之纪念物也；以其是非荣辱，听命他人，不以自身为本位，则个人独立平等之人格，消灭无存，其一切善恶行为，势不能诉之自身意志而课以功过；谓之奴隶，谁曰不宜？立德立功，首当辨此。</p>
+<h3 id="进步的而非保守的"><a href="#进步的而非保守的" class="headerlink" title="进步的而非保守的"></a>进步的而非保守的</h3><p>人生如逆水行舟，不进则退，中国之恒言也。自宇宙之根本大法言之，森罗万象，无日不在演进之途，万无保守现状之理；特以俗见拘牵，谓有二境，此法兰西当代大哲柏格森(H. Bergson) 之“创造进化论”(L’Evolution Creatrice)所以风靡一世也。以人事之进化言之，笃古不变之族，日就衰亡；日新求进之民，方兴未已；存亡之数，可以逆睹。矧在吾国，大未觉，故步自封，精之政教文章，粗之布帛水火，无一不相形丑曲拙，而可与当世争衡？</p>
+<p> 举凡残民害理之妖言，率能征之故训，而不可谓诬，谬种流传，岂自今始!固有之伦理、法律、学术、礼俗，无一非封建制度之遗，持较皙种之所为，以并世之人，而思想差迟，几及千载；尊重廿四朝之历史性，而不作改进之图，则驱吾民于二十世纪之世界以外，纳之奴隶牛马黑暗沟中而已，复何说哉!于此而言保守，诚不知为何项制度文物，可以适用生存于今世。吾宁忍过去国粹之消亡，而不忍现在及将来之，不适世界之生存而归削灭也。</p>
+<p>呜呼!巴比伦人往矣，其文明尚有何等之效用耶？“皮之不存，毛将焉传？”世界进化，未有已焉。其不能善变而与之俱进者，将见其不适环境之争存，而退归天然淘汰已耳，保守云乎哉!</p>
+<h3 id="进取的而非退隐的"><a href="#进取的而非退隐的" class="headerlink" title="进取的而非退隐的"></a>进取的而非退隐的</h3><p> 当此恶流奔进之时，得一二自好之士，洁身引退，岂非希世懿德。然欲以化民成俗，请于百尺竿头，再进一步。夫生存竞争，势所不免，一息尚存，即无守退安隐之余地。排万难而前行，乃人生之天职。以善意解之，退隐为高人出世之行；以恶意解之，退隐为弱者不适竞争之现象。欧俗以横厉无前为上德，亚洲以闲逸恬淡为美风，东西强弱之原因，斯其一矣。此退隐主义之根本缺点也。</p>
+<p> 若夫吾国之俗，习为委靡：苟取利禄者，不在论列之数；自好之士，希声隐沦，食粟衣帛，无益于世，世以雅人名士目之，实与游惰无择也。人心秽浊，不以此辈而有所补救，而国民抗往之风，植产之习，于焉以斩。人之生也，应战胜恶社会，而不可为恶社会所征服；应超出恶社会，进冒险苦斗之兵，而不可逃循恶社会，作退避安闲之想。呜呼!欧罗巴铁骑，入汝室矣，将高卧白云何处也？吾愿青年之为孔、墨，而不愿其为巢、由；吾愿青年之为托尔斯泰与达噶尔(R. Tagore,印度隐遁诗人)，不若其为哥伦布与安重根!</p>
+<h3 id="世界的而非锁国的"><a href="#世界的而非锁国的" class="headerlink" title="世界的而非锁国的"></a>世界的而非锁国的</h3><p> 并吾国而存立于大地者，大小凡四十余国，强半与吾有通商往来之谊。加之海陆交通，朝夕千里，古之所谓绝国，今视之若在户庭。举凡一国之经济政治状态有所变更，其影响率被于世界，不啻牵一发而动全身也。立国于今之世，其兴废存亡，视其国之内政者半，影响于国外者恒亦半焉。以吾国近事证之：日本勃兴，以促吾革命维新之局；欧洲战起，日本乃有对我之要求；此非其彰彰者耶？投一国于世界潮流之中，笃旧者固速其危亡，善变者反因以竞进。</p>
+<p>吾国自通海以来，自悲观者言之，失地偿金，国力索矣；自乐观者言之，倘无甲午庚子两次之福音，至今犹在八股垂发时代。居今日而言锁国闭关之策，匪独力所不能，亦且势所不利。万邦并立，动辄相关，无论其国若何富强，亦不能漠视外情，自为风气。各国之制度文物，形式虽不必尽同，但不思驱其国于危亡者，其遵循共同原则之精神，渐趋一致，潮流所及，莫之能违。于此而执特别历史国情之说，以冀抗此潮流，是犹有锁国之精神，而无世界之智识。国民而无世界知识，其国将何以图存于世界之中？语云：“闭户造车，出门未必合辙。”今之造车者，不但闭户，且欲以“周礼”“考工”之制，行之欧美康庄，其患将不止不合辙已也!</p>
+<h3 id="实利的而非虚文的"><a href="#实利的而非虚文的" class="headerlink" title="实利的而非虚文的"></a>实利的而非虚文的</h3><p>自约翰弥尔(J.S.Mill)“实利主义”唱道于英，孔特(Comte)之“实验哲学”唱道于法，欧洲社会之制度，人心之思想，为之一变。最近德意志科学大兴，物质文明，造乎其极，制度人心，为之再变。举凡政治之所营，教育之所期，文学技术之所风尚，万马奔驰，无不齐集于厚生利用之一途。一切虚文空想之无裨于现实生活者，吐弃殆尽。当代大哲，若德意志之倭根(R. Eucken),若法兰西之柏格森，虽不以现时物质文明为美备，咸揭橥生活(英文曰Life,德文曰Leben，法文曰La vie)问题，为立言之的。生活神圣，正以此次战争，血染其鲜明之旗帜。欧人空想虚文之，势将觉悟无遗。</p>
+<p>夫利用厚生，崇实际而薄虚玄，本吾国初民之俗；而今日之社会制度，人心思想，悉自周、汉两代而来，——周礼崇尚虚文，汉则罢黜百家而尊儒重道。——名教之所昭垂，人心之所祈向，无一不与社会现实生活背道而驰。倘不改弦而更张之，则国力莫由昭苏，社会永无宁日。祀天神而拯水旱，诵“孝经”以退黄巾，人非童昏，知其妄也。物之不切于实用者，虽金玉圭璋，不如布粟粪土。若事之无利于个人或社会现实生活者，皆虚文也，诳人之事也。诳人之事，虽祖宗之所遗留，圣贤之所垂教，政府之所提倡，社会之所崇尚，皆一文不值也!</p>
+<h3 id="科学的而非想象的"><a href="#科学的而非想象的" class="headerlink" title="科学的而非想象的"></a>科学的而非想象的</h3><p>科学者何？吾人对于事物之概念，综合客观之现象，诉之主观之理性，而不矛盾之谓也。想象者何？既超脱客观之现象，复抛弃主观之理性，凭空构造，有假定而无实证，不可以人间已有之智灵，明其理由，道其法则者也。在昔蒙昧之世，当今浅化之民，有想象而无科学。宗教美文，皆想象时代之产物。近代欧洲之所以优越他族者，科学之兴，其功不在人权说下，若舟车之有两轮焉。今且日新月异，举凡一事之兴，一物之细，罔不诉之科学法则，以定其得失从违；其效将使人间之思想云为，一遵理性，而迷信斩焉，而无知妄作之风息焉。</p>
+<p>国人而欲脱蒙昧时代，羞为浅化之民也，则急起直追，当以科学与人权并重。士不知科学，故袭阴阳家符瑞五行之说，惑世诬民，地气风水之谈，乞灵枯骨。农不知科学，故无择种去虫之术。工不知科学，故货弃于地，战斗生事之所需，一一仰给于异国。商不知科学，故惟识罔取近利，未来之胜算，无容心焉。医不知科学，既不解人身之构造，复不事药性之分析，菌毒传染，更无闻焉；惟知附会五行生克寒热阴阳之说，袭古方以投药饵，其术殆与矢人同科；其想象之最神奇者，莫如“气”之一说，其说且通于力士羽流之术，试遍索宇宙间，诚不知此“气”之果为何物也!</p>
+<p>凡此无常识之思惟，无理由之信仰，欲根治之，厥为科学。夫以科学说明真理，事事求诸证实，较之想象武断之所为，其步度诚缓，然其步步皆踏实地，不若幻想突飞者之终无寸进也。宇宙间之事理无穷，科学领土内之膏腴待辟者，正自广阔。青年勉乎哉!</p>
+<h3 id="后记：马督公谈“新青年”"><a href="#后记：马督公谈“新青年”" class="headerlink" title="后记：马督公谈“新青年”"></a>后记：马督公谈“新青年”</h3></div><div class="index-category-tag"><div class="level-item"><i class="fas fa-folder-open has-text-grey"> </i><a class="article-more button is-small link-muted index-categories" href="/categories/Idealism/">Idealism</a></div>  <div class="level-item"><i class="fas fa-tags has-text-grey"> </i><a class="article-more button is-small link-muted index-tags" href="/tags/Revolution/">Revolution</a><span> </span><a class="article-more button is-small link-muted index-tags" href="/tags/Historical-Documents/">Historical Documents</a></div><hr></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Ideas/%E8%83%BD%E5%8A%9B.html#comment-container"><span class="display-none-class">/Ideas/能力.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="c00dafde2f844d980aa451ff2ea900a0">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>16 分钟  <i class="fas fa-pencil-alt"> </i>2.4 k</span></div><div class="pin-icon"><i class="fas fa-thumbtack"></i></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Ideas/%E8%83%BD%E5%8A%9B.html">能力</a></h1><div class="content"><blockquote>
+<p>人在年轻的时候，最核心的能力是什么？</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1405957234203062272">提升核心能力科目练习</a>这里有练习总集锦。做了练习可以申请投稿到这个专栏。我有时间会做示范和点评。</p>
+<p>人需要拥有的最重要的核心能力，就是<strong>无歧义、完备、简洁的表达能力</strong>。</p>
+<p>我先来说明这三个要求分别是什么。</p>
+<p>无歧义，是指极大的压缩所有人把A理解为B的可能性，即<strong>无错</strong>。</p>
+<p>完备性，是指待指各项之中没有被遗漏的必要的要素（也包括语句中必要的语素），即<strong>无漏</strong>。</p>
+<p>简洁，是指在达到同样的表达效果的前提下，占用人最少的理解资源，即<strong>无费</strong>。</p>
+<p>一个人能进行无错、无漏、无费的表达的能力有多强，直接关系到ta将来能达到的高度。</p>
+<p>为什么这个能力如此的关键呢？</p>
+<p><strong>因为所谓的学习，就是在自己的意识里构建对世界的无错、无漏的表达。</strong></p>
+<p><strong>学习的成果，在本质意义上只是【你的判断力支撑之下】的一组你看不出如何有错、如何有漏的关于世界的表达。</strong></p>
+<p>你们看到魔鬼了吗？我已经把它涂黑给你们看了。</p>
+<p>你的判断力决定了你的水准的极限。</p>
+<p>这就是为什么要有第三条——无费。</p>
+<p>因为这种表达若不是尽量简洁的，你有限的运存就很难在一次运算中容纳足够的命题。</p>
+<p>这会<strong>直接的影响到你察觉错与漏的能力，</strong>于是会直接的锁定你对世界的表达能力的无错、无漏的水准上限。</p>
+<p>你只能将自己的能力提高到自己觉察不出错和漏的程度。你觉察错漏的能力有多高，就决定了你的思维能力的极限。</p>
+<p>从纯粹技术性的能力上说，这是一切其它能力的底层，是核心中的核心。</p>
+<p>这项能力，就是七十二绝技背后的那个小无相功，是<strong>你在评价你的子女的学术进步的时候唯一真正需要关心指标</strong>。</p>
+<p>因为这个能力并不只是“表达能力”，它在事实上就是学习能力、理解能力、探索能力、创造力的实质。</p>
+<p>那些不同名字的所谓重要能力，只是这项能力在不同的场景下、不同的上下文中的别称。</p>
+<p>只是同一个人在公司被叫张总，在家被叫爸爸，在亲戚家被叫二叔的区别而已。</p>
+<hr>
+<p>我不妨把话说的直白一点，这就是精英与非精英的真正分界。</p>
+<p>精英不是按照人所处的社会地位来分的，而是本质的按照这个能力来分的。</p>
+<p>精英完全有可能在社会决策链的中下层。决定在具体层面、具体小环境里谁是精英的实质要素，就是这项能力。</p>
+<p>这个能力强的人，必非池中之物。如果这个环境是存在天花板的，这个能力最强的人有强烈的趋势会达到天花板，甚至把天花板打穿。</p>
+<hr>
+<p>下面，我来列一个基本的训练科目（逐渐补全练习）：</p>
+<ul>
+<li>学会用语言准确表达画面关系。</li>
+</ul>
+<p>练习1：</p>
+<p>与朋友各在网上搜索一套配置相当的平面房型图（如都是四室两厅两卫两阳台）例如下图：</p>
+<p><a target="_blank" rel="noopener" href="https://pica.zhimg.com/50/v2-5dabef2223a6dafa75038735c8470b3c_720w.jpg?source=1940ef5c"><img src="https://s2.loli.net/2022/07/16/8NyDIxsTOYGfzbv.jpg" alt="img"></a></p>
+<p>用语音表达指引朋友在不原图的前提下绘制这张房型图的墙体、窗户、门、楼梯等基本结构（不含软装)。记录从开始到墙体封闭的最后一笔的总时间T。</p>
+<p>比较朋友的绘制结果与原图的差异。</p>
+<p>换到下一张图，与朋友交换角色，测量时间T。</p>
+<p>应观察到T值有效下降和绘制误差逐次缩小。</p>
+<p>以下是一个练习参考：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/397392822">1″、核心能力训练 | 房屋布局表述方案汇总</a></p>
+<p>进阶练习：</p>
+<p>默写世界各地的行政区划轮廓图——例如中国各省、市地图。</p>
+<p>首先观察图形，将图形的特征在自己内心深处转化为文字表述。</p>
+<p>然后脱离参考物，根据文字表述的结果默写该形状。</p>
+<p>将默写的结果与原图对照。</p>
+<p>应观察到越来越准确和迅速的默写能力。</p>
+<p>练习2:</p>
+<p>寻找有演出剧本可参考的电影或电视剧。</p>
+<p>通过观看电影，自己尝试反推剧本（台词不必全写）。</p>
+<p>写好一幕，与原剧本对照。详细程度参考下例（建议找英文剧本，中文剧本一般过于侧重台词）</p>
+<p><a target="_blank" rel="noopener" href="https://pic3.zhimg.com/50/v2-d68dc63d728ca7ef393bf77134e06316_720w.jpg?source=1940ef5c"><img src="https://s2.loli.net/2022/07/16/bDWGMnuqoJIlsRf.jpg" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://pic1.zhimg.com/50/v2-1d35939592029b2bb55bd73baf34310a_720w.jpg?source=1940ef5c"><img src="https://s2.loli.net/2022/07/16/PFkVZ78Ww63vAIy.jpg" alt="img"></a></p>
+<hr>
+<ul>
+<li>学会纯用语言准确的描述两个事物间的关系。</li>
+</ul>
+<p>练习</p>
+<p>尝试创建编码系统为一个集合中的每一个个体赋予唯一代号。要求编码系统规则尽可能简短，且其他人依照这一规则对同一集合进行同样的计算，会得出完全相同的代号命令——即任选其中一个对象，你赋予该对象的代号将与对方完全一致。</p>
+<p>进阶练习</p>
+<p>任取一件常见物品的零件分解图（搜索“爆炸图”），为每一个零件给出自己的命名，要求每一种零件的命名都是唯一的，且其他人能根据你的命名准确的将该零件识别出来。</p>
+<p>图的复杂度参考如下：</p>
+<p><a target="_blank" rel="noopener" href="https://pic1.zhimg.com/50/v2-1fe3cc6d4cac52f433785db70b7e300d_720w.jpg?source=1940ef5c"><img src="https://s2.loli.net/2022/07/16/JdWL4olix2KRjYr.jpg" alt="img"></a></p>
+<p>命名的典范参考，如下（有足够的望文生义性、高度简洁性和彼此之间的明显区分性)</p>
+<p><a target="_blank" rel="noopener" href="https://pic3.zhimg.com/50/v2-5ceaa0f5781f669fbb6ce83176edb61a_720w.jpg?source=1940ef5c"><img src="https://s2.loli.net/2022/07/16/5ZHPeaVJznI4kMh.jpg" alt="img"></a></p>
+<p>尝试</p>
+<ul>
+<li>学会结构化的口头和文字表达能力</li>
+<li>掌握编制表格的能力</li>
+</ul>
+<hr>
+<ul>
+<li>学会用表达式描述数学关系。</li>
+<li>学会用二维、三维坐标图、饼图、柱图……等图型表达数值关系（charts）。</li>
+</ul>
+<hr>
+<ul>
+<li>学会绘制规范的流程图。</li>
+<li>学会绘制用例图、时序图、类图等规范的图形建模技术（简单说就是熟练掌握UML）。</li>
+</ul>
+<hr>
+<ul>
+<li>学会绘制透视准确的线条素描。</li>
+</ul>
+<p>练习1:</p>
+<p>绘制任意角度的1:1:1比例的立方块轴测图，要求尺寸准确。</p>
+<p><a target="_blank" rel="noopener" href="https://pic1.zhimg.com/50/v2-e7ae5b3540cdd6a5c8a0bd0fa3947116_720w.jpg?source=1940ef5c"><img src="https://s2.loli.net/2022/07/16/61x4dayzqMpm7HE.jpg" alt="img"></a></p>
+<p>进阶练习：</p>
+<p>熟练掌握较简单立体形状的轴测图画法。（类似下图复杂度，但需要完全手绘）</p>
+<p><a target="_blank" rel="noopener" href="https://pica.zhimg.com/50/v2-224027ad5efaaa85cadf5bcfcd5468a5_720w.jpg?source=1940ef5c"><img src="https://s2.loli.net/2022/07/16/EyikOmGBZMTr5aN.jpg" alt="img"></a></p>
+<p>进阶练习：</p>
+<p>参考实物或图片，绘制三点透视的单反相机。（所有附件齐全，绘制角度必须与图片角度不同）</p>
+<p><a target="_blank" rel="noopener" href="https://pic2.zhimg.com/50/v2-53d19db4deaf7e9ca6591cc2507235de_720w.jpg?source=1940ef5c"><img src="https://s2.loli.net/2022/07/16/mvxVjb3cedCZ1DE.jpg" alt="img"></a></p>
+<p>进阶练习：绘制摆在桌子上的一堆互相堆叠的单反相机。</p>
+<hr>
+<ul>
+<li>如果可能，熟练的掌握快速表现技法（建筑类、产品设计类）</li>
+</ul>
+<p>练习：</p>
+<p>用简单线条绘制自己的客厅，复杂度参考下图。</p>
+<p><a target="_blank" rel="noopener" href="https://pic2.zhimg.com/50/v2-29e60f9d869d5110bb5a01043f532b0d_720w.jpg?source=1940ef5c"><img src="https://s2.loli.net/2022/07/16/nkmW8byLpNc7dGT.jpg" alt="img"></a></p>
+<p>使用简单线条表达街景，复杂度参考下图。</p>
+<p><a target="_blank" rel="noopener" href="https://pica.zhimg.com/50/v2-2548d8a72cc2fcf8ef5c1216053616a6_720w.jpg?source=1940ef5c"><img src="https://s2.loli.net/2022/07/16/ktbUWPVJOrvEY67.jpg" alt="img"></a></p>
+<ul>
+<li>如果可能，掌握简单的3D建模工具。最好进一步掌握3D打印技术。</li>
+<li>如果可能，掌握油泥造型能力。</li>
+<li>学会绘制标准（工业&#x2F;建筑）图纸。</li>
+<li>学会尽可能系统的信息分类技术（图书馆学、情报学）。</li>
+</ul>
+<p>练习：</p>
+<p>为自己的电脑文件构建一个绝对完备的编目。</p>
+<ol>
+<li>任何一个文件都可以基于这个分类体系准确的预测其所在的位置。</li>
+<li>无论增加什么类型的文件，都不会导致原有的分类需要改名，也不会导致原有的文件需要重新归类。</li>
+</ol>
+<p>（未完，待续）</p>
+<p>转自：<a target="_blank" rel="noopener" href="https://github.com/itrewub/jh-notes/blob/main/titled/%E8%83%BD%E5%8A%9B.md">https://github.com/itrewub/jh-notes/blob/main/titled/%E8%83%BD%E5%8A%9B.md</a></p>
+</div><div class="index-category-tag"><div class="level-item"><i class="fas fa-folder-open has-text-grey"> </i><a class="article-more button is-small link-muted index-categories" href="/categories/Ideas/">Ideas</a></div>  <div class="level-item"><i class="fas fa-tags has-text-grey"> </i><a class="article-more button is-small link-muted index-tags" href="/tags/Growing-up/">Growing up</a><span> </span><a class="article-more button is-small link-muted index-tags" href="/tags/Advice/">Advice</a></div><hr></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Policy/%E7%9D%A1%E5%89%8D%E6%B6%88%E6%81%AF%E7%AC%AC423%E6%9C%9F.html#comment-container"><span class="display-none-class">/Policy/睡前消息第423期.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="4589bd5d5c25cb1d2f22c25d79405c20">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>几秒  <i class="fas fa-pencil-alt"> </i>0.0 k</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Policy/%E7%9D%A1%E5%89%8D%E6%B6%88%E6%81%AF%E7%AC%AC423%E6%9C%9F.html">睡前消息第423期</a></h1><div class="content"><p>原文见：<a target="_blank" rel="noopener" href="https://m.thepaper.cn/baijiahao_17547420">https://m.thepaper.cn/baijiahao_17547420</a></p>
+<p>睡前消息第423期文稿：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/HjTOdN0J3_YRXDWwBOo1vQ">https://mp.weixin.qq.com/s/HjTOdN0J3_YRXDWwBOo1vQ</a></p>
+<p>文件原文见：<a target="_blank" rel="noopener" href="https://m.thepaper.cn/baijiahao_17547420">https://m.thepaper.cn/baijiahao_17547420</a></p>
+</div><div class="index-category-tag"><div class="level-item"><i class="fas fa-folder-open has-text-grey"> </i><a class="article-more button is-small link-muted index-categories" href="/categories/Policy/">Policy</a></div>  <div class="level-item"><i class="fas fa-tags has-text-grey"> </i><a class="article-more button is-small link-muted index-tags" href="/tags/Domestic-Affairs/">Domestic Affairs</a></div><hr></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Notes/wsl2-and-v2ray.html#comment-container"><span class="display-none-class">/Notes/wsl2-and-v2ray.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="f34ec4ad42d714eb5d7461000841abd7">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>3 分钟  <i class="fas fa-pencil-alt"> </i>0.4 k</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Notes/wsl2-and-v2ray.html">wsl2 and v2ray</a></h1><div class="content"><p>今天在折腾 wsl2 的 ubuntu 20.04，想起前几天看了关于 zsh 的介绍，想配置一下玩一玩，发现需要从外网下载 antigen 插件。在此之前没有弄过 wsl2 的代理，于是研究了一下怎么代理。</p>
+<p>兜兜转转找到了官方文档，了解到 wsl2 和 wsl1 原理不大一样，wsl1 只要 <code>localhost:port</code> 就能访问主机，而 wsl2 是和主机连 ip 都不一样的另一台独立的机子，所以要另辟蹊径。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/wsl/networking">https://docs.microsoft.com/en-us/windows/wsl/networking</a></p>
+<p>原文如下：</p>
+<p>When using a WSL 1 distribution, if your computer was set up to be accessed by your LAN, then applications run in WSL could be accessed on your LAN as well.</p>
+<p>WSL 2 has a virtualized ethernet adapter with its own unique IP address. Currently, to enable this workflow you will need to go through the same steps as you would for a regular virtual machine.(We are looking into ways to improve this experience.)</p>
+<p>文档说需要确保设备能够接受LAN连接，所以就去启用了LAN，虽然最后也不知道有没有用。</p>
+<p><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/c843ea0b64384a36921e4a16.html">https://jingyan.baidu.com/article/c843ea0b64384a36921e4a16.html</a></p>
+<p>在 bash 中输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host_ip=$(<span class="built_in">cat</span> /etc/resolv.conf |grep <span class="string">&quot;nameserver&quot;</span> |<span class="built_in">cut</span> -f 2 -d <span class="string">&quot; &quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>可以将下面这行加入.zshrc中，不用每次启动都输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ALL_PROXY=<span class="string">&quot;http://<span class="variable">$host_ip</span>:port&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>port 为图片最下方的10809</p>
+<p>同时在 v2ray 中勾选允许来自局域网的连接。</p>
+<p><a target="_blank" rel="noopener" href="https://s2.loli.net/2022/06/21/bHeUFa4QOwmVYEL.png"><img src="https://s2.loli.net/2022/06/21/bHeUFa4QOwmVYEL.png" alt="image-20220324172209892"></a></p>
+<p>最后以管理员身份在 Powershell 输入：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">New-NetFirewallRule</span> <span class="literal">-DisplayName</span> <span class="string">&quot;WSL&quot;</span> <span class="literal">-Direction</span> Inbound <span class="literal">-InterfaceAlias</span> <span class="string">&quot;vEthernet (WSL)&quot;</span> <span class="literal">-Action</span> Allow</span><br></pre></td></tr></table></figure>
+
+<p>参考评论区：</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/144647249">https://zhuanlan.zhihu.com/p/144647249</a></p>
+<p>这样就可以使用主机的代理了。</p>
+</div><div class="index-category-tag">  <div class="level-item"><i class="fas fa-tags has-text-grey"> </i><a class="article-more button is-small link-muted index-tags" href="/tags/%E8%B8%A9%E5%9D%91/">踩坑</a></div><hr></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Notes/ML-Project-Checklist.html#comment-container"><span class="display-none-class">/Notes/ML-Project-Checklist.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="47857c74a6274c17a5ef97984edd7d4f">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>8 分钟  <i class="fas fa-pencil-alt"> </i>1.1 k</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/Notes/ML-Project-Checklist.html">ML-Project-Checklist</a></h1><div class="content"><p>This checklist can guide you through your Machine Learning projects. There are eight main steps:</p>
+<ol>
+<li>Frame the problem and look at the big picture.</li>
+<li>Get the data.</li>
+<li>Explore the data to gain insights.</li>
+<li>Prepare the data to better expose the underlying data patterns to Machine Learning algorithms.</li>
+<li>Explore many different models and short-list the best ones.</li>
+<li>Fine-tune your models and combine them into a great solution.</li>
+<li>Present your solution.</li>
+<li>Launch, monitor, and maintain your system.</li>
+</ol>
+<p>Obviously, you should feel free to adapt this checklist to your needs.</p>
+<h2 id="Frame-the-problem-and-look-at-the-big-picture"><a href="#Frame-the-problem-and-look-at-the-big-picture" class="headerlink" title="Frame the problem and look at the big picture"></a>Frame the problem and look at the big picture</h2><ol>
+<li>Define the objective in business terms.</li>
+<li>How will your solution be used?</li>
+<li>What are the current solutions&#x2F;workarounds (if any)?</li>
+<li>How should you frame this problem (supervised&#x2F;unsupervised, online&#x2F;offline, etc.)</li>
+<li>How should performance be measured?</li>
+<li>Is the performance measure aligned with the business objective?</li>
+<li>What would be the minimum performance needed to reach the business objective?</li>
+<li>What are comparable problems? Can you reuse experience or tools?</li>
+<li>Is human expertise available?</li>
+<li>How would you solve the problem manually?</li>
+<li>List the assumptions you or others have made so far.</li>
+<li>Verify assumptions if possible.</li>
+</ol>
+<h2 id="Get-the-data"><a href="#Get-the-data" class="headerlink" title="Get the data"></a>Get the data</h2><p>Note: automate as much as possible so you can easily get fresh data.</p>
+<ol>
+<li>List the data you need and how much you need.</li>
+<li>Find and document where you can get that data.</li>
+<li>Check how much space it will take.</li>
+<li>Check legal obligations, and get the authorization if necessary.</li>
+<li>Get access authorizations.</li>
+<li>Create a workspace (with enough storage space).</li>
+<li>Get the data.</li>
+<li>Convert the data to a format you can easily manipulate (without changing the data itself).</li>
+<li>Ensure sensitive information is deleted or protected (e.g., anonymized).</li>
+<li>Check the size and type of data (time series, sample, geographical, etc.).</li>
+<li>Sample a test set, put it aside, and never look at it (no data snooping!).</li>
+</ol>
+<h2 id="Explore-the-data"><a href="#Explore-the-data" class="headerlink" title="Explore the data"></a>Explore the data</h2><p>Note: try to get insights from a field expert for these steps.</p>
+<ol>
+<li>Create a copy of the data for exploration (sampling it down to a manageable size if necessary).</li>
+<li>Create a Jupyter notebook to keep record of your data exploration.</li>
+<li>Study each attribute and its characteristics:<ul>
+<li>Name</li>
+<li>Type (categorical, int&#x2F;float, bounded&#x2F;unbounded, text, structured, etc.)</li>
+<li>% of missing values</li>
+<li>Noisiness and type of noise (stochastic, outliers, rounding errors, etc.)</li>
+<li>Possibly useful for the task?</li>
+<li>Type of distribution (Gaussian, uniform, logarithmic, etc.)</li>
+</ul>
+</li>
+<li>For supervised learning tasks, identify the target attribute(s).</li>
+<li>Visualize the data.</li>
+<li>Study the correlations between attributes.</li>
+<li>Study how you would solve the problem manually.</li>
+<li>Identify the promising transformations you may want to apply.</li>
+<li>Identify extra data that would be useful (go back to “Get the Data” on page 502).</li>
+<li>Document what you have learned.</li>
+</ol>
+<h2 id="Prepare-the-data"><a href="#Prepare-the-data" class="headerlink" title="Prepare the data"></a>Prepare the data</h2><p>Notes:</p>
+<ul>
+<li>Work on copies of the data (keep the original dataset intact).</li>
+<li>Write functions for all data transformations you apply, for five reasons:<ul>
+<li>So you can easily prepare the data the next time you get a fresh dataset</li>
+<li>So you can apply these transformations in future projects</li>
+<li>To clean and prepare the test set</li>
+<li>To clean and prepare new data instances</li>
+<li>To make it easy to treat your preparation choices as hyperparameters</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Data cleaning:<ul>
+<li>Fix or remove outliers (optional).</li>
+<li>Fill in missing values (e.g., with zero, mean, median…) or drop their rows (or columns).</li>
+</ul>
+</li>
+<li>Feature selection (optional):<ul>
+<li>Drop the attributes that provide no useful information for the task.</li>
+</ul>
+</li>
+<li>Feature engineering, where appropriates:<ul>
+<li>Discretize continuous features.</li>
+<li>Decompose features (e.g., categorical, date&#x2F;time, etc.).</li>
+<li>Add promising transformations of features (e.g., log(x), sqrt(x), x^2, etc.).</li>
+<li>Aggregate features into promising new features.</li>
+</ul>
+</li>
+<li>Feature scaling: standardize or normalize features.</li>
+</ol>
+<h2 id="Short-list-promising-models"><a href="#Short-list-promising-models" class="headerlink" title="Short-list promising models"></a>Short-list promising models</h2><p>Notes:</p>
+<ul>
+<li>If the data is huge, you may want to sample smaller training sets so you can train many different models in a reasonable time (be aware that this penalizes complex models such as large neural nets or Random Forests).</li>
+<li>Once again, try to automate these steps as much as possible.</li>
+</ul>
+<ol>
+<li>Train many quick and dirty models from different categories (e.g., linear, naive, Bayes, SVM, Random Forests, neural net, etc.) using standard parameters.</li>
+<li>Measure and compare their performance.<ul>
+<li>For each model, use N-fold cross-validation and compute the mean and standard deviation of their performance.</li>
+</ul>
+</li>
+<li>Analyze the most significant variables for each algorithm.</li>
+<li>Analyze the types of errors the models make.<ul>
+<li>What data would a human have used to avoid these errors?</li>
+</ul>
+</li>
+<li>Have a quick round of feature selection and engineering.</li>
+<li>Have one or two more quick iterations of the five previous steps.</li>
+<li>Short-list the top three to five most promising models, preferring models that make different types of errors.</li>
+</ol>
+<h2 id="Fine-Tune-the-System"><a href="#Fine-Tune-the-System" class="headerlink" title="Fine-Tune the System"></a>Fine-Tune the System</h2><p>Notes:</p>
+<ul>
+<li>You will want to use as much data as possible for this step, especially as you move toward the end of fine-tuning.</li>
+<li>As always automate what you can.</li>
+</ul>
+<ol>
+<li>Fine-tune the hyperparameters using cross-validation.<ul>
+<li>Treat your data transformation choices as hyperparameters, especially when you are not sure about them (e.g., should I replace missing values with zero or the median value? Or just drop the rows?).</li>
+<li>Unless there are very few hyperparamter values to explore, prefer random search over grid search. If training is very long, you may prefer a Bayesian optimization approach (e.g., using a Gaussian process priors, as described by Jasper Snoek, Hugo Larochelle, and Ryan Adams (<a target="_blank" rel="noopener" href="https://goo.gl/PEFfGr">https://goo.gl/PEFfGr</a>))</li>
+</ul>
+</li>
+<li>Try Ensemble methods. Combining your best models will often perform better than running them invdividually.</li>
+<li>Once you are confident about your final model, measure its performance on the test set to estimate the generalization error.</li>
+</ol>
+<blockquote>
+<p>Don’t tweak your model after measuring the generalization error: you would just start overfitting the test set.</p>
+</blockquote>
+<h2 id="Present-your-solution"><a href="#Present-your-solution" class="headerlink" title="Present your solution"></a>Present your solution</h2><ol>
+<li>Document what you have done.</li>
+<li>Create a nice presentation.<ul>
+<li>Make sure you highlight the big picture first.</li>
+</ul>
+</li>
+<li>Explain why your solution achieves the business objective.</li>
+<li>Don’t forget to present interesting points you noticed along the way.<ul>
+<li>Describe what worked and what did not.</li>
+<li>List your assumptions and your system’s limitations.</li>
+</ul>
+</li>
+<li>Ensure your key findings are communicated through beautiful visualizations or easy-to-remember statements (e.g., “the median income is the number-one predictor of housing prices”).</li>
+</ol>
+<h2 id="Launch"><a href="#Launch" class="headerlink" title="Launch!"></a>Launch!</h2><ol>
+<li>Get your solution ready for production (plug into production data inputs, write unit tests, etc.).</li>
+<li>Write monitoring code to check your system’s live performance at regular intervals and trigger alerts when it drops.<ul>
+<li>Beware of slow degradation too: models tend to “rot” as data evolves.</li>
+<li>Measuring performance may require a human pipeline (e.g., via a crowdsourcing service).</li>
+<li>Also monitor your inputs’ quality (e.g., a malfunctioning sensor sending random values, or another team’s output becoming stale). This is particulary important for online learning systems.</li>
+</ul>
+</li>
+<li>Retrain your models on a regular basis on fresh data (automate as much as possible).</li>
+</ol>
+</div><div class="index-category-tag">  <div class="level-item"><i class="fas fa-tags has-text-grey"> </i><a class="article-more button is-small link-muted index-tags" href="/tags/ML/">ML</a></div><hr></div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/">上一页</a></div><div class="pagination-next"><a href="/page/3/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><a class="pagination-link is-current" href="/page/2/">2</a></li><li><a class="pagination-link" href="/page/3/">3</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/Epiphyllum.png" alt="cjy324"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">cjy324</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>江苏省</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">24</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">8</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">19</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/jy324" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div><div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://https://bbs.xdsec.org/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">XDSEC BBS</span></span><span class="level-right"><span class="level-item tag">https</span></span></a></li><li><a class="level is-mobile" href="https://cplusplus.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Reference</span></span><span class="level-right"><span class="level-item tag">cplusplus.com</span></span></a></li><li><a class="level is-mobile" href="https://oiwiki.org/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">OI Wiki</span></span><span class="level-right"><span class="level-item tag">oiwiki.org</span></span></a></li><li><a class="level is-mobile" href="https://unix.stackexchange.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Linux StackExchange</span></span><span class="level-right"><span class="level-item tag">unix.stackexchange.com</span></span></a></li><li><a class="level is-mobile" href="https://tldp.org/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TLDP</span></span><span class="level-right"><span class="level-item tag">tldp.org</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-07-16T14:34:01.000Z">2022-07-16</time></p><p class="title"><a href="/Notes/vscode%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E5%80%BC.html">vscode查看内存值</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-07-16T14:33:10.000Z">2022-07-16</time></p><p class="title"><a href="/Notes/less%E5%91%BD%E4%BB%A4.html">less命令</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-07-16T14:15:16.000Z">2022-07-16</time></p><p class="title"><a href="/Gal%20Review/Gal%E5%88%9D%E4%BD%93%E9%AA%8C.html">Gal初体验</a></p><p class="categories"><a href="/categories/Gal-and-Life/">Gal and Life</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-07-16T14:10:58.000Z">2022-07-16</time></p><p class="title"><a href="/Idealism/%E5%AF%BB%E4%B9%8C%E8%B0%83%E6%9F%A5.html">寻乌调查</a></p><p class="categories"><a href="/categories/Idealism/">Idealism</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/Idealism/%E4%B8%AD%E5%85%B1%E5%A3%AB%E5%85%B5%E9%80%83%E4%BA%A1%E6%95%B0%E9%87%8F%E5%88%86%E6%9E%90.html"><img src="https://s2.loli.net/2022/06/22/VK1zTeydvHxuiNp.jpg" alt="中共士兵逃亡数量分析"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-07-16T14:07:53.000Z">2022-07-16</time></p><p class="title"><a href="/Idealism/%E4%B8%AD%E5%85%B1%E5%A3%AB%E5%85%B5%E9%80%83%E4%BA%A1%E6%95%B0%E9%87%8F%E5%88%86%E6%9E%90.html">中共士兵逃亡数量分析</a></p><p class="categories"><a href="/categories/Idealism/">Idealism</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/Gal-Review/"><span class="level-start"><span class="level-item">Gal Review</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Gal-and-Life/"><span class="level-start"><span class="level-item">Gal and Life</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Idealism/"><span class="level-start"><span class="level-item">Idealism</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Ideas/"><span class="level-start"><span class="level-item">Ideas</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Notes/"><span class="level-start"><span class="level-item">Notes</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Policy/"><span class="level-start"><span class="level-item">Policy</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/World/"><span class="level-start"><span class="level-item">World</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/World/People/"><span class="level-start"><span class="level-item">People</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Domestic-Affairs/"><span class="tag">Domestic Affairs</span><span class="tag is-grey-lightest">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Historical-Documents/"><span class="tag">Historical Documents</span><span class="tag is-grey-lightest">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C-%E8%AF%AD%E8%A8%80/"><span class="tag">C 语言</span><span class="tag is-grey-lightest">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Revolution/"><span class="tag">Revolution</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Growing-up/"><span class="tag">Growing up</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/History/"><span class="tag">History</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Practice/"><span class="tag">Practice</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Advice/"><span class="tag">Advice</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Atri/"><span class="tag">Atri</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Gal-Review/"><span class="tag">Gal Review</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Global-Affairs/"><span class="tag">Global Affairs</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Growing-Up/"><span class="tag">Growing Up</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/IDE-%E4%BD%BF%E7%94%A8/"><span class="tag">IDE 使用</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ML/"><span class="tag">ML</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Social-Experience/"><span class="tag">Social Experience</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/University/"><span class="tag">University</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/canvas/"><span class="tag">canvas</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B8%A9%E5%9D%91/"><span class="tag">踩坑</span><span class="tag is-grey-lightest">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="cjy的小屋" height="28"></a><p class="size-small"><span>&copy; 2022 cjy324</span>  Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a> &amp; <a href="https://github.com/removeif/hexo-theme-amazing" target="_blank">Amazing</a> <br><span><span id="statistic-times">loading...</span><script>function createTime(time) {
+            var n = new Date(time);
+            now.setTime(now.getTime() + 250),
+                days = (now - n) / 1e3 / 60 / 60 / 24,
+                dnum = Math.floor(days),
+                hours = (now - n) / 1e3 / 60 / 60 - 24 * dnum,
+                hnum = Math.floor(hours),
+            1 == String(hnum).length && (hnum = "0" + hnum),
+                minutes = (now - n) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
+                mnum = Math.floor(minutes),
+            1 == String(mnum).length && (mnum = "0" + mnum),
+                seconds = (now - n) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
+                snum = Math.round(seconds),
+            1 == String(snum).length && (snum = "0" + snum),
+                document.getElementById("statistic-times").innerHTML = "❤️本站自 <strong>"+time.split(" ")[0].replace(/\//g,".")+"</strong> 已运行 <strong>" + dnum + "</strong> 天 <strong>" + hnum + "</strong> 小时 <strong>" + mnum + "</strong> 分 <strong>" + snum + "</strong> 秒！❤️";
+        }var now = new Date();setInterval("createTime('2022/1/1 00:00:00')", 250,"");</script><br></span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div><div class="sideMusic"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="/js/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><meting-js style="width: auto;height: 2000px;" server="netease" type="playlist" id="3015903239" theme="#2980b9" loop="all" autoplay="false" order="list" storageName="aplayer-setting" lrctype="0" list-max-height="400px" fixed="true"></meting-js></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script type="text/javascript">var pjax = new Pjax({
+            elements: "a",//代表点击链接就更新
+            selectors: [  //代表要更新的节点
+                ".section",
+                "title"
+            ],
+            cache: true,
+            cacheBust:false
+        })
+
+        function loadBusuanzi(){
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", function () {});
+        }
+
+        function loadMathJax() { //加载mathjax
+            $.getScript("//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML", function () {
+                MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\(', '\)']] } });
+                var math = document.getElementsByClassName("entry-content")[0];
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+            });
+        };
+
+        // 开始 PJAX 执行的函数
+        document.addEventListener('pjax:send', function () {
+        });
+        
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+        document.addEventListener('pjax:complete', function () {
+            $(".section").css({opacity:1});
+            if(false){
+                $.getScript('/js/comment-issue-data.js',function(){loadIssueData('undefined','undefined','undefined','undefined',undefined);});
+            }
+            if(false){
+                loadMathJax();
+            }
+            loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+            loadBackTop();
+            loadBusuanzi();
+            if(typeof loadBanner == 'function'){
+                loadBanner();
+            }
+        });</script></body></html>
