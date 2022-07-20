@@ -12268,9 +12268,6 @@ select,
 textarea {
   font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
-body {
-  background: url("/img/background.png");
-}
 .img-x {
   position: relative;
   overflow-y: hidden;
