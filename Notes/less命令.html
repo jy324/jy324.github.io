@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>less命令 - cjy的小屋</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="cjy的小屋"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="cjy的小屋"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="原文地址 hedzr.com   摘要：对 less 的各种用法做一次整理，顺便也可以当作参考手册。  引子less 是一个 Linux 命令行实用程序，用于显示文件内容，它支持管道输入，所以能够被用于接收前一命令的标准输出病进行全屏展示。 less 是 more 的增强版本，它具有更全面的全文件导航能力，以及全文搜索能力。less 在大文件打开方面有很好的优化，在即时显示、快速加载等方面性能突"><meta property="og:type" content="blog"><meta property="og:title" content="cjy的小屋"><meta property="og:url" content="https://jy324.github.io/"><meta property="og:site_name" content="cjy的小屋"><meta property="og:description" content="原文地址 hedzr.com   摘要：对 less 的各种用法做一次整理，顺便也可以当作参考手册。  引子less 是一个 Linux 命令行实用程序，用于显示文件内容，它支持管道输入，所以能够被用于接收前一命令的标准输出病进行全屏展示。 less 是 more 的增强版本，它具有更全面的全文件导航能力，以及全文搜索能力。less 在大文件打开方面有很好的优化，在即时显示、快速加载等方面性能突"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://jy324.github.io/img/avatar.png"><meta property="article:published_time" content="2022-07-16T14:33:10.000Z"><meta property="article:modified_time" content="2022-07-20T06:46:32.000Z"><meta property="article:author" content="cjy324"><meta property="article:tag" content="Linux"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/avatar.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://jy324.github.io/Notes/less%E5%91%BD%E4%BB%A4.html"},"headline":"cjy的小屋","image":["https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225100221467.png","https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225100928604.png","https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225103745594.png","https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225102328869.png","https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225101246073.png"],"datePublished":"2022-07-16T14:33:10.000Z","dateModified":"2022-07-20T06:46:32.000Z","author":{"@type":"Person","name":"cjy324"},"description":"原文地址 hedzr.com   摘要：对 less 的各种用法做一次整理，顺便也可以当作参考手册。  引子less 是一个 Linux 命令行实用程序，用于显示文件内容，它支持管道输入，所以能够被用于接收前一命令的标准输出病进行全屏展示。 less 是 more 的增强版本，它具有更全面的全文件导航能力，以及全文搜索能力。less 在大文件打开方面有很好的优化，在即时显示、快速加载等方面性能突"}</script><link rel="canonical" href="https://jy324.github.io/Notes/less%E5%91%BD%E4%BB%A4.html"><link rel="icon" href="/img/favicon.svg"><meta name="referrer" content="no-referrer-when-downgrade"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="cjy的小屋" type="application/atom+xml">
+</head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="cjy的小屋" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/friend">友链</a></div><div class="navbar-end"><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><!--!--><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2022-07-16  <a class="commentCountImg" href="/Notes/less%E5%91%BD%E4%BB%A4.html#comment-container"><span class="display-none-class">/Notes/less命令.html</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="370af45d351cbaf5f1ef8b2899b2598e">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>24 分钟  <i class="fas fa-pencil-alt"> </i>3.7 k</span></div></div><h1 class="title is-3 is-size-4-mobile">less命令</h1><div class="content"><blockquote>
+<p>原文地址 <a target="_blank" rel="noopener" href="https://hedzr.com/devops/linux/linux-less-command/">hedzr.com</a></p>
+</blockquote>
+<blockquote>
+<p><strong>摘要</strong>：<br>对 less 的各种用法做一次整理，顺便也可以当作参考手册。</p>
+</blockquote>
+<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p><code>less</code> 是一个 Linux 命令行实用程序，用于显示文件内容，它支持管道输入，所以能够被用于接收前一命令的标准输出病进行全屏展示。</p>
+<p><code>less</code> 是 <code>more</code> 的增强版本，它具有更全面的全文件导航能力，以及全文搜索能力。<code>less</code> 在大文件打开方面有很好的优化，在即时显示、快速加载等方面性能突出。<code>less</code> 还支持一次性打开多个文件，它将会逐一地显示这些文件的内容。</p>
+<p>取名为 <code>less</code> 也因为一句名人名言：<code>less is more</code>。这句名言已经哲学化了。</p>
+<span id="more"></span>
+
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225100221467.png"><img src="https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225100221467.png" alt="img"></a></p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>less 的基本使用方法有两种，一是打开一个或多个文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less /var/log/messages</span><br></pre></td></tr></table></figure>
+
+<p>二是作为管道操作的末端：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux|less</span><br></pre></td></tr></table></figure>
+
+<p>在管理操作时，可能会常常用到 <code>tail -f</code> 等价的实时刷新模式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmsg|less +F</span><br></pre></td></tr></table></figure>
+
+<h3 id="被嵌入地、隐含地使用"><a href="#被嵌入地、隐含地使用" class="headerlink" title="被嵌入地、隐含地使用"></a>被嵌入地、隐含地使用</h3><p>在很多场所中 less 被通过 PAGER 环境变量而悄悄地使用。</p>
+<p>一个典型的例子是 man 命令。当：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man printf</span><br></pre></td></tr></table></figure>
+
+<p>时，printf 的手册页将被显示在 less 的阅读界面中，如同这样：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225100928604.png"><img src="https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225100928604.png" alt="img"></a></p>
+<h3 id="阅读界面操作"><a href="#阅读界面操作" class="headerlink" title="阅读界面操作"></a>阅读界面操作</h3><p>在 less 显示的阅读界面中，按键即命令。</p>
+<p>你可以随时按下 <code>h</code> 显示帮助屏，<code>q</code> 将退出帮助屏。</p>
+<p>其它最常用的按键命令有：</p>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">指令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">SPACE</td>
+<td align="left">下一页</td>
+</tr>
+<tr>
+<td align="left">d</td>
+<td align="left">下半页</td>
+</tr>
+<tr>
+<td align="left">b</td>
+<td align="left">前一页</td>
+</tr>
+<tr>
+<td align="left">u</td>
+<td align="left">前半页</td>
+</tr>
+<tr>
+<td align="left">v</td>
+<td align="left">编辑内容</td>
+</tr>
+<tr>
+<td align="left">j 或 ↵ Enter</td>
+<td align="left">下ㄧ行</td>
+</tr>
+<tr>
+<td align="left">k</td>
+<td align="left">前ㄧ行</td>
+</tr>
+<tr>
+<td align="left">Home</td>
+<td align="left">文件顶部</td>
+</tr>
+<tr>
+<td align="left">End</td>
+<td align="left">文件结尾</td>
+</tr>
+<tr>
+<td align="left">F</td>
+<td align="left">跟随模式（供日志使用）。Follow Mode (for logs). Interrupt to abort.</td>
+</tr>
+<tr>
+<td align="left">g 或 &lt;</td>
+<td align="left">第一行</td>
+</tr>
+<tr>
+<td align="left">G 或 &gt;</td>
+<td align="left">最后ㄧ行</td>
+</tr>
+<tr>
+<td align="left"><code>⟨n⟩</code>G</td>
+<td align="left">跳到第<code>⟨n⟩</code>行</td>
+</tr>
+<tr>
+<td align="left">&#x2F;<code>⟨text⟩</code></td>
+<td align="left">向前搜索<code>⟨text⟩</code>。文字会被视为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正则表达式</a>。</td>
+</tr>
+<tr>
+<td align="left">?<code>⟨text⟩</code></td>
+<td align="left">如同 &#x2F;，但为向后搜索。</td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td align="left">下一个符合的搜索结果</td>
+</tr>
+<tr>
+<td align="left">N</td>
+<td align="left">上一个符合的搜索结果</td>
+</tr>
+<tr>
+<td align="left">Escu</td>
+<td align="left">关闭符合突显（请见<code>-g</code>命令行选项）</td>
+</tr>
+<tr>
+<td align="left">-<code>⟨c⟩</code></td>
+<td align="left">切换选项<code>⟨c⟩</code>，例如 - i 会切换是否要在搜索时忽略大小写</td>
+</tr>
+<tr>
+<td align="left">m<code>⟨c⟩</code></td>
+<td align="left">设置标记<code>⟨c⟩</code></td>
+</tr>
+<tr>
+<td align="left">’<code>⟨c⟩</code></td>
+<td align="left">跳到标记<code>⟨c⟩</code></td>
+</tr>
+<tr>
+<td align="left">&#x3D; 或 Ctrl+G</td>
+<td align="left">文件信息</td>
+</tr>
+<tr>
+<td align="left">:n</td>
+<td align="left">下一个文件</td>
+</tr>
+<tr>
+<td align="left">:p</td>
+<td align="left">上一个文件</td>
+</tr>
+<tr>
+<td align="left">h</td>
+<td align="left">说明。这会使用<code>less</code>显示，q 离开。</td>
+</tr>
+<tr>
+<td align="left">q</td>
+<td align="left">离开</td>
+</tr>
+</tbody></table>
+<p>稍后键盘一节中我们会完整地介绍全部可用的按键命令。</p>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>在 less 的阅读界面中，底部行被称作状态命令行。如果你在界面中按键，则该行的状态提示暂时被隐藏，带有 <code>:</code> 提示符的命令行输入会被显示。</p>
+<p>当你按下 <code>/</code> 进入搜索状态时，状态命令行等待你继续键入 pattern。</p>
+<p>你可以在搜索时使用正则式 pattern。</p>
+<p>重复上一次搜索是 <code>n</code> 。</p>
+<p>如果你键入 <code>-J</code> 序列，那么阅读界面左侧将显示一列垂直的状态栏，而 <code>pattern</code> 匹配的行在这个状态栏中会有显示：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225103745594.png"><img src="https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225103745594.png" alt="img"></a></p>
+<h3 id="标记（Mark"><a href="#标记（Mark" class="headerlink" title="标记（Mark)"></a>标记（Mark)</h3><p>标记是一个字母，大小写敏感。标记等同于我们在 Visual Studio Code 这样的图形化文字编辑器中的书签。</p>
+<p>在阅读界面按下 ma 按键序列，<code>m</code> 命令将会为你的当前阅读位置建立一个名为 <code>a</code> 的标记。稍后你可以使用 <code>&#39;a</code> 返回到这个位置。</p>
+<p>如果你键入 <code>-J</code> 序列，那么阅读界面左侧将显示一列垂直的状态栏，而 <code>a</code> 标记在这个状态栏中会有显示：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225102328869.png"><img src="https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225102328869.png" alt="img"></a></p>
+<h2 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h2><p>选项既可以从命令行指定，也可以在 less 阅读界面中通过前缀字符序列 <code>-</code> 或 <code>--</code> 直接键入和进行翻转。</p>
+<p>例如你可以键入 <code>-?</code> 来显示帮助屏（尽管 <code>h</code> 来得更简便）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">less [-[+]aABcCdeEfFgGiIJKLmMnNqQrRsSuUVwWX~]</span><br><span class="line">     [-b space] [-h lines] [-j line] [-k keyfile]</span><br><span class="line">     [-&#123;oO&#125; logfile] [-p pattern] [-P prompt] [-t tag]</span><br><span class="line">     [-T tagsfile] [-x tab,...] [-y lines] [-[z] lines]</span><br><span class="line">     [-# shift] [+[+]cmd] [--] [filename]...</span><br></pre></td></tr></table></figure>
+
+<p>less 允许从命令行直接键入命令，使用 <code>+</code> 前缀即可，所以 <code>+F</code> 代表着进入滚动刷新模式，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less +F /var/log/messages</span><br></pre></td></tr></table></figure>
+
+<p>注意你仍然可以使用 less 的命令行专有的选项，例如 <code>-F</code> 代表着文件内容不够一屏时立即退出 less。</p>
+<p>如果你使用了 <code>++</code> 前缀，那么该命令将会被自动应用到每一个文件。</p>
+<blockquote>
+<p><code>less</code> 可以一次性打开多个文件并依次显示。</p>
+</blockquote>
+<h3 id="主要的命令行选项"><a href="#主要的命令行选项" class="headerlink" title="主要的命令行选项"></a>主要的命令行选项</h3><p>有效的命令行专有选项大体上如下表（由于描述文字很简单故保留原文）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">-?  ........  --help</span><br><span class="line">                Display help (from command line).</span><br><span class="line">-a  ........  --search-skip-screen</span><br><span class="line">                Search skips current screen.</span><br><span class="line">-A  ........  --SEARCH-SKIP-SCREEN</span><br><span class="line">                Search starts just after target line.</span><br><span class="line">-b [N]  ....  --buffers=[N]</span><br><span class="line">                Number of buffers.</span><br><span class="line">-B  ........  --auto-buffers</span><br><span class="line">                Don&#x27;t automatically allocate buffers for pipes.</span><br><span class="line">-c  ........  --clear-screen</span><br><span class="line">                Repaint by clearing rather than scrolling.</span><br><span class="line">-d  ........  --dumb</span><br><span class="line">                Dumb terminal.</span><br><span class="line">-D [xn.n]  .  --color=xn.n</span><br><span class="line">                Set screen colors. (MS-DOS only)</span><br><span class="line">-e  -E  ....  --quit-at-eof  --QUIT-AT-EOF</span><br><span class="line">                Quit at end of file.</span><br><span class="line">-f  ........  --force</span><br><span class="line">                Force open non-regular files.</span><br><span class="line">-F  ........  --quit-if-one-screen</span><br><span class="line">                Quit if entire file fits on first screen.</span><br><span class="line">-g  ........  --hilite-search</span><br><span class="line">                Highlight only last match for searches.</span><br><span class="line">-G  ........  --HILITE-SEARCH</span><br><span class="line">                Don&#x27;t highlight any matches for searches.</span><br><span class="line">-h [N]  ....  --max-back-scroll=[N]</span><br><span class="line">                Backward scroll limit.</span><br><span class="line">-i  ........  --ignore-case</span><br><span class="line">                Ignore case in searches that do not contain uppercase.</span><br><span class="line">-I  ........  --IGNORE-CASE</span><br><span class="line">                Ignore case in all searches.</span><br><span class="line">-j [N]  ....  --jump-target=[N]</span><br><span class="line">                Screen position of target lines.</span><br><span class="line">-J  ........  --status-column</span><br><span class="line">                Display a status column at left edge of screen.</span><br><span class="line">-k [file]  .  --lesskey-file=[file]</span><br><span class="line">                Use a lesskey file.</span><br><span class="line">-K            --quit-on-intr</span><br><span class="line">                Exit less in response to ctrl-C.</span><br><span class="line">-L  ........  --no-lessopen</span><br><span class="line">                Ignore the LESSOPEN environment variable.</span><br><span class="line">-m  -M  ....  --long-prompt  --LONG-PROMPT</span><br><span class="line">                Set prompt style.</span><br><span class="line">-n  -N  ....  --line-numbers  --LINE-NUMBERS</span><br><span class="line">                Don&#x27;t use line numbers.</span><br><span class="line">-o [file]  .  --log-file=[file]</span><br><span class="line">                Copy to log file (standard input only).</span><br><span class="line">-O [file]  .  --LOG-FILE=[file]</span><br><span class="line">                Copy to log file (unconditionally overwrite).</span><br><span class="line">-p [pattern]  --pattern=[pattern]</span><br><span class="line">                Start at pattern (from command line).</span><br><span class="line">-P [prompt]   --prompt=[prompt]</span><br><span class="line">                Define new prompt.</span><br><span class="line">-q  -Q  ....  --quiet  --QUIET  --silent --SILENT</span><br><span class="line">                Quiet the terminal bell.</span><br><span class="line">-r  -R  ....  --raw-control-chars  --RAW-CONTROL-CHARS</span><br><span class="line">                Output &quot;raw&quot; control characters.</span><br><span class="line">-s  ........  --squeeze-blank-lines</span><br><span class="line">                Squeeze multiple blank lines.</span><br><span class="line">-S  ........  --chop-long-lines</span><br><span class="line">                Chop (truncate) long lines rather than wrapping.</span><br><span class="line">-t [tag]  ..  --tag=[tag]</span><br><span class="line">                Find a tag.</span><br><span class="line">-T [tagsfile] --tag-file=[tagsfile]</span><br><span class="line">                Use an alternate tags file.</span><br><span class="line">-u  -U  ....  --underline-special  --UNDERLINE-SPECIAL</span><br><span class="line">                Change handling of backspaces.</span><br><span class="line">-V  ........  --version</span><br><span class="line">                Display the version number of &quot;less&quot;.</span><br><span class="line">-w  ........  --hilite-unread</span><br><span class="line">                Highlight first new line after forward-screen.</span><br><span class="line">-W  ........  --HILITE-UNREAD</span><br><span class="line">                Highlight first new line after any forward movement.</span><br><span class="line">-x [N[,...]]  --tabs=[N[,...]]</span><br><span class="line">                Set tab stops.</span><br><span class="line">-X  ........  --no-init</span><br><span class="line">                Don&#x27;t use termcap init/deinit strings.</span><br><span class="line">-y [N]  ....  --max-forw-scroll=[N]</span><br><span class="line">                Forward scroll limit.</span><br><span class="line">-z [N]  ....  --window=[N]</span><br><span class="line">                Set size of window.</span><br><span class="line">-&quot; [c[c]]  .  --quotes=[c[c]]</span><br><span class="line">                Set shell quote characters.</span><br><span class="line">-~  ........  --tilde</span><br><span class="line">                Don&#x27;t display tildes after end of file.</span><br><span class="line">-# [N]  ....  --shift=[N]</span><br><span class="line">                Horizontal scroll amount (0 = one half screen width)</span><br><span class="line">    ........  --no-keypad</span><br><span class="line">                Don&#x27;t send termcap keypad init/deinit strings.</span><br><span class="line">    ........  --follow-name</span><br><span class="line">                The F command changes files if the input file is renamed.</span><br><span class="line">    ........  --use-backslash</span><br><span class="line">                Subsequent options use backslash as escape char.</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h3><p>其中或许会被常常用到的可能有：</p>
+<table>
+<thead>
+<tr>
+<th align="left">选项</th>
+<th align="left">能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-X ........ --no-init</code></td>
+<td align="left">不使用 termcap 的 init&#x2F;deinit 功能。退出 less 时不清屏。</td>
+</tr>
+<tr>
+<td align="left"><code>-x [N[,...]] --tabs=[N[,...]]</code></td>
+<td align="left">设置 TAB 字符的显示宽度</td>
+</tr>
+<tr>
+<td align="left"><code>-n -N .... --line-numbers --LINE-NUMBERS</code></td>
+<td align="left">显示 &#x2F; 不显示行号。行号被显示在状态命令行中</td>
+</tr>
+<tr>
+<td align="left"><code>-m -M .... --long-prompt --LONG-PROMPT</code></td>
+<td align="left">切换状态命令行的提示符的风格</td>
+</tr>
+<tr>
+<td align="left"><code>-J ........ --status-column</code></td>
+<td align="left">在左侧显示一列垂直的状态行，搜索结果行可以在这一列提供一个标记显示</td>
+</tr>
+<tr>
+<td align="left"><code>-F ........ --quit-if-one-screen</code></td>
+<td align="left">如果内容显示不足一屏则立即退出 less</td>
+</tr>
+<tr>
+<td align="left"><code>-e -E .... --quit-at-eof --QUIT-AT-EOF</code></td>
+<td align="left">当首次抵达文件结尾位置时立即退出 less</td>
+</tr>
+</tbody></table>
+<p>状态命令行有两种风格：short, medium。前者显示一个 <code>:</code> 提示符，后者显示一系列文档状态信息如行号、显示位置百分比等等。</p>
+<p>如果在阅读界面中使用 <code>-N</code>，则行号会被显示在状态命令行中。</p>
+<p>如果在命令行使用了 <code>-N</code>，那么行号可以被显示在每一行的左侧。对于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less -N /var/log/syslog</span><br></pre></td></tr></table></figure>
+
+<p>会有：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225101246073.png"><img src="https://cdn.jsdelivr.net/gh/hzimg/blog-pics@master/uPic/image-20211225101246073.png" alt="img"></a></p>
+<h2 id="键盘"><a href="#键盘" class="headerlink" title="键盘"></a>键盘</h2><h3 id="快捷键（less）"><a href="#快捷键（less）" class="headerlink" title="快捷键（less）"></a>快捷键（<code>less</code>）</h3><p>在手册页阅读界面中，可以使用快捷键来帮助阅读。</p>
+<p>由于手册页的显示是使用操作系统 Shell 环境中的默认 PAGER 来完成的，所以快捷键遵循相应 PAGER 的功能映射。</p>
+<p>大多数系统中现在默认采用 <code>less</code> 作为默认 PAGER，因此下面介绍 <code>less</code> 快捷键，但针对 manpage 修正描述文字。</p>
+<h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">h</td>
+<td align="left">显示帮助屏幕</td>
+</tr>
+<tr>
+<td align="left">q</td>
+<td align="left">退出</td>
+</tr>
+<tr>
+<td align="left">e ^E J ^N CR</td>
+<td align="left">前进一行（或 N 行）</td>
+</tr>
+<tr>
+<td align="left">y ^Y k ^K ^P</td>
+<td align="left">后退一行（或 N 行）</td>
+</tr>
+<tr>
+<td align="left">f ^F ^V SPACE</td>
+<td align="left">前进一屏</td>
+</tr>
+<tr>
+<td align="left">b ^B ESC-v</td>
+<td align="left">后退一屏</td>
+</tr>
+<tr>
+<td align="left">z</td>
+<td align="left">前进一屏（设置屏高为 N）</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">后退一屏（设置屏高为 N）</td>
+</tr>
+<tr>
+<td align="left">ESC-SPACE</td>
+<td align="left">前进一屏，在文末允许上滚</td>
+</tr>
+<tr>
+<td align="left">d ^D</td>
+<td align="left">前进半屏</td>
+</tr>
+<tr>
+<td align="left">u ^U</td>
+<td align="left">后退半屏</td>
+</tr>
+<tr>
+<td align="left">ESC-) RightArrow</td>
+<td align="left">向右卷动半屏</td>
+</tr>
+<tr>
+<td align="left">ESC-( LeftArrow</td>
+<td align="left">向左卷动半屏</td>
+</tr>
+<tr>
+<td align="left">ESC-} ^RightArrow</td>
+<td align="left">向右卷动到最右侧</td>
+</tr>
+<tr>
+<td align="left">ESC-{ ^LeftArrow</td>
+<td align="left">向左卷动到第一列</td>
+</tr>
+<tr>
+<td align="left">F</td>
+<td align="left">持续滚动前进，如同 <code>tail -f</code> 那样</td>
+</tr>
+<tr>
+<td align="left">ESC-F</td>
+<td align="left">持续滚动前进，但在查找关键字匹配时停止滚动</td>
+</tr>
+<tr>
+<td align="left">r ^R ^L</td>
+<td align="left">重新绘制屏幕</td>
+</tr>
+<tr>
+<td align="left">R</td>
+<td align="left">重绘屏幕，废弃已经缓存的输入</td>
+</tr>
+</tbody></table>
+<p>带有 <code>N</code> 的命令，允许 <code>N</code> <code>cmd</code> 的输入方法。</p>
+<p>以 <code>f</code> 命令为例，简单地键入 <code>f</code> 则屏幕向下卷滚，内容上移一行；但你可以键入 <code>31f</code> 使得内容一次性地向上滚动 31 行。与其相反的是 <code>b</code> 命令，可以使屏幕向上卷滚，内容下移一行。</p>
+<p>F 命令具有即时刷新文件内容的能力，它相当于增强版的 <code>tail -f</code> 功能，不但可以随时刷新和显示最新的文件内容，也能够暂时停止刷新，在已有的内容中导航和检索，而且还能继续再次地使用 F 进入即时刷新的状态。</p>
+<h4 id="搜索-1"><a href="#搜索-1" class="headerlink" title="搜索"></a>搜索</h4><table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/pattern</code></td>
+<td align="left">向前搜索关键词 <code>pattern</code></td>
+</tr>
+<tr>
+<td align="left"><code>?pattern</code></td>
+<td align="left">向后搜索关键词 <code>pattern</code></td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td align="left">重复上一次搜索（重复 N 次）</td>
+</tr>
+<tr>
+<td align="left">N</td>
+<td align="left">反向地重复上一次搜索</td>
+</tr>
+<tr>
+<td align="left">ESC-n</td>
+<td align="left">重复上一搜索，允许跨越多个文件</td>
+</tr>
+<tr>
+<td align="left">ESC-N</td>
+<td align="left">重复上一搜索，反向，允许跨越多个文件</td>
+</tr>
+<tr>
+<td align="left">ESC-u</td>
+<td align="left">放弃、还原、翻转搜索高亮状态</td>
+</tr>
+<tr>
+<td align="left"><code>&amp;pattern</code></td>
+<td align="left">只显示匹配行文字</td>
+</tr>
+</tbody></table>
+<p>一个 <code>pattern</code> 可以由以下按键（ASCII 字符）进行前缀修饰：</p>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">^N or !</td>
+<td align="left">搜索非匹配行</td>
+</tr>
+<tr>
+<td align="left">^E or *</td>
+<td align="left">搜索多个文件（越过当前主题的文件末尾）</td>
+</tr>
+<tr>
+<td align="left">^F or @</td>
+<td align="left">从第一个文件 (<code>/</code>) 或者最后一个文件 (<code>?</code>) 开始搜索</td>
+</tr>
+<tr>
+<td align="left">^K</td>
+<td align="left">高亮匹配文字，但不移动（保持当前阅读位置不变）</td>
+</tr>
+<tr>
+<td align="left">^R</td>
+<td align="left">不使用正则式</td>
+</tr>
+</tbody></table>
+<h4 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h4><table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">g &lt; ESC-&lt;</td>
+<td align="left">文件第一行（或第 N 行）</td>
+</tr>
+<tr>
+<td align="left">G &gt; ESC-&gt;</td>
+<td align="left">文件最后一行（或最后第 N 行）</td>
+</tr>
+<tr>
+<td align="left">p %</td>
+<td align="left">转到文件开始（或者按百分比定位到 N）</td>
+</tr>
+<tr>
+<td align="left">t</td>
+<td align="left">转到下一个标记（重复 N 次）</td>
+</tr>
+<tr>
+<td align="left">T</td>
+<td align="left">转到前一个标记（重复 N 次）</td>
+</tr>
+<tr>
+<td align="left">[ ( {</td>
+<td align="left">查找闭括号 } ) ]</td>
+</tr>
+<tr>
+<td align="left">} ) ]</td>
+<td align="left">查找开括号 [ ( {</td>
+</tr>
+<tr>
+<td align="left">ESC-^F (c1) (c2)</td>
+<td align="left">查找闭括号 (c2)</td>
+</tr>
+<tr>
+<td align="left">ESC-^B (c1) (c2)</td>
+<td align="left">查找开括号 (c1)</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>g 这样的按键，在阅读界面可以直接生效。但你也可以连续按键，例如 1 3 g 可以转到第 13 行。</p>
+<table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">m<code>&lt;letter&gt;</code></td>
+<td align="left">标记当前位置为 <code>&lt;letter&gt;</code></td>
+</tr>
+<tr>
+<td align="left">’<code>&lt;letter&gt;</code></td>
+<td align="left">跳转到前一个标记位置（以 <code>&lt;letter&gt;</code> 为索引）</td>
+</tr>
+<tr>
+<td align="left">’’</td>
+<td align="left">跳转到前一个标记位置</td>
+</tr>
+<tr>
+<td align="left"><code>^X^X</code></td>
+<td align="left">等同于 ‘</td>
+</tr>
+</tbody></table>
+<p>一个标记位置（mark）是一个大写字母或者小写字母。另外，下面是预定义的标记位置：</p>
+<ul>
+<li><code>^</code> 文件开始</li>
+<li><code>$</code> 文件结尾</li>
+</ul>
+<h4 id="切换文件"><a href="#切换文件" class="headerlink" title="切换文件"></a>切换文件</h4><table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:e [file]</td>
+<td align="left">装载一个新文件</td>
+</tr>
+<tr>
+<td align="left"><code>^X^V</code></td>
+<td align="left">等同于 :e</td>
+</tr>
+<tr>
+<td align="left">:n</td>
+<td align="left">列表中下一个（后 N 个）文件</td>
+</tr>
+<tr>
+<td align="left">:p</td>
+<td align="left">列表中上一个（上 N 个）文件</td>
+</tr>
+<tr>
+<td align="left">:x</td>
+<td align="left">列表中第一个（第 N 个）文件</td>
+</tr>
+<tr>
+<td align="left">:d</td>
+<td align="left">从命令行列表中删除当前文件</td>
+</tr>
+<tr>
+<td align="left">&#x3D; ^G :f</td>
+<td align="left">打印当前文件名</td>
+</tr>
+</tbody></table>
+<h4 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h4><table>
+<thead>
+<tr>
+<th align="left">按键</th>
+<th align="left">能力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-<code>&lt;flag&gt;</code></td>
+<td align="left">翻转一个命令行选项</td>
+</tr>
+<tr>
+<td align="left">–<code>&lt;name&gt;</code></td>
+<td align="left">翻转一个选项</td>
+</tr>
+<tr>
+<td align="left">_<code>&lt;flag&gt;</code></td>
+<td align="left">显示一个命令行选项</td>
+</tr>
+<tr>
+<td align="left">__<code>&lt;name&gt;</code></td>
+<td align="left">显示一个选项</td>
+</tr>
+<tr>
+<td align="left">+<code>cmd</code></td>
+<td align="left">每当载入解释一个新文件时，执行 less 命令 <code>cmd</code></td>
+</tr>
+<tr>
+<td align="left">!<code>command</code></td>
+<td align="left">执行 Shell 命令 <code>command</code></td>
+</tr>
+<tr>
+<td align="left">|X<code>command</code></td>
+<td align="left">管道操作，从当前位置和标记位置 <code>X</code> 到 Shell 命令 <code>command</code></td>
+</tr>
+<tr>
+<td align="left">s <code>file</code></td>
+<td align="left">保存输入到文件</td>
+</tr>
+<tr>
+<td align="left">v</td>
+<td align="left">编辑当前文件（使用 <code>$VISUAL</code> 或 <code>$EDITOR</code>）</td>
+</tr>
+<tr>
+<td align="left">V</td>
+<td align="left">打印 less 版本号</td>
+</tr>
+</tbody></table>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p><code>less</code> 现在是大多数 Linux 发行版的 PAGER 默认值。因此当 PAGER 没有显式设定时，系统总是使用它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PAGER=less</span><br></pre></td></tr></table></figure>
+
+<h3 id="LESS"><a href="#LESS" class="headerlink" title="LESS"></a>LESS</h3><p>你可以为 <code>less</code> 指定预设的命令行选项，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LESS=&quot;-X&quot;; export LESS</span><br></pre></td></tr></table></figure>
+
+<p>这使得 less 退出之后不会清屏。</p>
+<h2 id="行编辑"><a href="#行编辑" class="headerlink" title="行编辑"></a>行编辑</h2><p>less 阅读界面中，按键输入会显示在屏幕最下面一行，同时进入行编辑模式。有时候你可以像 vi 一样按下 <code>:</code> 进入到命令的行编辑模式。</p>
+<p>下面是这个行编辑的键盘操作方法（由于描述文字很简单故保留原文）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">RightArrow ..................... ESC-l ... Move cursor right one character.</span><br><span class="line">LeftArrow ...................... ESC-h ... Move cursor left one character.</span><br><span class="line">ctrl-RightArrow  ESC-RightArrow  ESC-w ... Move cursor right one word.</span><br><span class="line">ctrl-LeftArrow   ESC-LeftArrow   ESC-b ... Move cursor left one word.</span><br><span class="line">HOME ........................... ESC-0 ... Move cursor to start of line.</span><br><span class="line">END ............................ ESC-$ ... Move cursor to end of line.</span><br><span class="line">BACKSPACE ................................ Delete char to left of cursor.</span><br><span class="line">DELETE ......................... ESC-x ... Delete char under cursor.</span><br><span class="line">ctrl-BACKSPACE   ESC-BACKSPACE ........... Delete word to left of cursor.</span><br><span class="line">ctrl-DELETE .... ESC-DELETE .... ESC-X ... Delete word under cursor.</span><br><span class="line">ctrl-U ......... ESC (MS-DOS only) ....... Delete entire line.</span><br><span class="line">UpArrow ........................ ESC-k ... Retrieve previous command line.</span><br><span class="line">DownArrow ...................... ESC-j ... Retrieve next command line.</span><br><span class="line">TAB ...................................... Complete filename &amp; cycle.</span><br><span class="line">SHIFT-TAB ...................... ESC-TAB   Complete filename &amp; reverse cycle.</span><br><span class="line">ctrl-L ................................... Complete filename, list all.</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><code>man less</code></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Less_(Unix)">less (Unix) - Wikipedia</a></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>less命令</p><p><a href="https://jy324.github.io/Notes/less命令.html">https://jy324.github.io/Notes/less命令.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><a href="https://jy324.github.io"><p>cjy324</p></a></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2022-07-16</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2022-07-20</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="recommend-area"><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 相关文章</span><br><span>  1.<a class="is-size-6" href="/zsh%E7%94%A8%E6%B3%95%E8%AE%B0%E5%BD%95.html" target="_blank">zsh用法记录</a><br></span><span>  2.<a class="is-size-6" href="/Notes/vscode%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E5%80%BC.html" target="_blank">vscode查看内存值</a><br></span><span>  3.<a class="is-size-6" href="/Notes/C%E8%AF%AD%E8%A8%80%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E7%AC%94%E8%AE%B0.html" target="_blank">C语言现代方法笔记</a><br></span><span>  4.<a class="is-size-6" href="/Notes/Linux-%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE.html" target="_blank">Linux 头文件位置</a><br></span><span>  5.<a class="is-size-6" href="/Notes/include-guard.html" target="_blank">include guard</a><br></span></div></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/Notes/vscode%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E5%80%BC.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">vscode查看内存值</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/Gal%20Review/Gal%E5%88%9D%E4%BD%93%E9%AA%8C.html"><span class="level-item">Gal初体验</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="https://s2.loli.net/2022/07/17/b8TnvaEoklKzMtd.jpg" alt="cjy324"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">cjy324</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Jiangsu, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">28</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">22</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/jy324" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div><div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://bbs.xdsec.org/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">XDSEC BBS</span></span><span class="level-right"><span class="level-item tag">bbs.xdsec.org</span></span></a></li><li><a class="level is-mobile" href="https://cplusplus.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Reference</span></span><span class="level-right"><span class="level-item tag">cplusplus.com</span></span></a></li><li><a class="level is-mobile" href="https://oiwiki.org/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">OI Wiki</span></span><span class="level-right"><span class="level-item tag">oiwiki.org</span></span></a></li><li><a class="level is-mobile" href="https://tldp.org/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">TLDP</span></span><span class="level-right"><span class="level-item tag">tldp.org</span></span></a></li></ul></div></div></div><!--!--><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-07T14:26:19.880Z">2022-08-07</time></p><p class="title"><a href="/hello-world.html">Hello World</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-07-26T14:22:29.000Z">2022-07-26</time></p><p class="title"><a href="/Notes/%E5%BC%B1%E7%AC%A6%E5%8F%B7%E5%92%8C%E5%BC%BA%E7%AC%A6%E5%8F%B7.html">弱符号和强符号</a></p><p class="categories"><a href="/categories/C-programming-languageji/">C programming languageji</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/History/%E6%88%91%E5%86%9B%E5%9C%A8%E6%88%98%E4%BA%89%E6%97%B6%E6%9C%9F%E7%9A%84%E9%80%83%E4%BA%A1%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90.html"><img src="https://s2.loli.net/2022/07/20/rpBZE1GsFgivVjN.jpg" alt="我军在战争时期的逃亡原因分析"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-07-20T07:04:57.000Z">2022-07-20</time></p><p class="title"><a href="/History/%E6%88%91%E5%86%9B%E5%9C%A8%E6%88%98%E4%BA%89%E6%97%B6%E6%9C%9F%E7%9A%84%E9%80%83%E4%BA%A1%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90.html">我军在战争时期的逃亡原因分析</a></p><p class="categories"><a href="/categories/History/">History</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-07-20T04:22:30.000Z">2022-07-20</time></p><p class="title"><a href="/zsh%E7%94%A8%E6%B3%95%E8%AE%B0%E5%BD%95.html">zsh用法记录</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-07-18T11:30:51.000Z">2022-07-18</time></p><p class="title"><a href="/History/%E4%B8%AD%E5%9B%BD%E5%BD%93%E4%BB%A3%E7%BB%8F%E6%B5%8E%E5%8F%B2%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-1.html">中国当代经济史读书笔记(1)</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/C-programming-languageji/"><span class="level-start"><span class="level-item">C programming languageji</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Gal-Review/"><span class="level-start"><span class="level-item">Gal Review</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Gal-and-Life/"><span class="level-start"><span class="level-item">Gal and Life</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/History/"><span class="level-start"><span class="level-item">History</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Idealism/"><span class="level-start"><span class="level-item">Idealism</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Ideas/"><span class="level-start"><span class="level-item">Ideas</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Notes/"><span class="level-start"><span class="level-item">Notes</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/Policy/"><span class="level-start"><span class="level-item">Policy</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/World/"><span class="level-start"><span class="level-item">World</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul class="mr-0"><li><a class="level is-mobile is-marginless" href="/categories/World/People/"><span class="level-start"><span class="level-item">People</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><a class="level is-mobile is-marginless" href="/categories/"><span class="level-start"><span class="level-item">查看全部&gt;&gt;</span></span></a></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">25</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Domestic-Affairs/"><span class="tag">Domestic Affairs</span><span class="tag is-grey-lightest">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Historical-Documents/"><span class="tag">Historical Documents</span><span class="tag is-grey-lightest">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/C-%E8%AF%AD%E8%A8%80/"><span class="tag">C 语言</span><span class="tag is-grey-lightest">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/History/"><span class="tag">History</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Revolution/"><span class="tag">Revolution</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Growing-up/"><span class="tag">Growing up</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Practice/"><span class="tag">Practice</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Advice/"><span class="tag">Advice</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Atri/"><span class="tag">Atri</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Economic/"><span class="tag">Economic</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Gal-Review/"><span class="tag">Gal Review</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Growing-Up/"><span class="tag">Growing Up</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/IDE-%E4%BD%BF%E7%94%A8/"><span class="tag">IDE 使用</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ML/"><span class="tag">ML</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Social-Experience/"><span class="tag">Social Experience</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/University/"><span class="tag">University</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/War/"><span class="tag">War</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/canvas/"><span class="tag">canvas</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/link-process/"><span class="tag">link process</span><span class="tag is-grey-lightest">1</span></a></div></div><div class="field is-grouped is-grouped-multiline"><a class="tags has-addons" href="/tags/"><span class="tag">查看全部&gt;&gt;</span></a></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="cjy的小屋" height="28"></a><p class="size-small"><span>&copy; 2022 cjy324</span>  Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a> &amp; <a href="https://github.com/removeif/hexo-theme-amazing" target="_blank">Amazing</a> <br><span><span id="statistic-times">loading...</span><script>function createTime(time) {
+            var n = new Date(time);
+            now.setTime(now.getTime() + 250),
+                days = (now - n) / 1e3 / 60 / 60 / 24,
+                dnum = Math.floor(days),
+                hours = (now - n) / 1e3 / 60 / 60 - 24 * dnum,
+                hnum = Math.floor(hours),
+            1 == String(hnum).length && (hnum = "0" + hnum),
+                minutes = (now - n) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
+                mnum = Math.floor(minutes),
+            1 == String(mnum).length && (mnum = "0" + mnum),
+                seconds = (now - n) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
+                snum = Math.round(seconds),
+            1 == String(snum).length && (snum = "0" + snum),
+                document.getElementById("statistic-times").innerHTML = "❤️本站自 <strong>"+time.split(" ")[0].replace(/\//g,".")+"</strong> 已运行 <strong>" + dnum + "</strong> 天 <strong>" + hnum + "</strong> 小时 <strong>" + mnum + "</strong> 分 <strong>" + snum + "</strong> 秒！❤️";
+        }var now = new Date();setInterval("createTime('2022/1/1 00:00:00')", 250,"");</script><br></span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div><div class="sideMusic"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="/js/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><meting-js style="width: auto;height: 2000px;" server="netease" type="playlist" id="3015903239" theme="#2980b9" loop="all" autoplay="false" order="list" storageName="aplayer-setting" lrctype="0" list-max-height="400px" fixed="true"></meting-js></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script type="text/javascript">var pjax = new Pjax({
+            elements: "a",//代表点击链接就更新
+            selectors: [  //代表要更新的节点
+                ".section",
+                "title"
+            ],
+            cache: true,
+            cacheBust:false
+        })
+
+        function loadBusuanzi(){
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", function () {});
+        }
+
+        function loadMathJax() { //加载mathjax
+            $.getScript("//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML", function () {
+                MathJax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\(', '\)']] } });
+                var math = document.getElementsByClassName("entry-content")[0];
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+            });
+        };
+
+        // 开始 PJAX 执行的函数
+        document.addEventListener('pjax:send', function () {
+        });
+        
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+        document.addEventListener('pjax:complete', function () {
+            $(".section").css({opacity:1});
+            if(false){
+                $.getScript('/js/comment-issue-data.js',function(){loadIssueData('undefined','undefined','undefined','undefined',undefined);});
+            }
+            if(false){
+                loadMathJax();
+            }
+            loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+            loadBackTop();
+            loadBusuanzi();
+            if(typeof loadBanner == 'function'){
+                loadBanner();
+            }
+        });</script></body></html>
