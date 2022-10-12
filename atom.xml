@@ -6,7 +6,7 @@
   <link href="https://jy324.github.io/atom.xml" rel="self"/>
   
   <link href="https://jy324.github.io/"/>
-  <updated>2022-08-18T16:46:04.101Z</updated>
+  <updated>2022-09-20T09:57:02.808Z</updated>
   <id>https://jy324.github.io/</id>
   
   <author>
@@ -17,15 +17,51 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>随便写写</title>
-    <link href="https://jy324.github.io/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99.html"/>
-    <id>https://jy324.github.io/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99.html</id>
-    <published>2022-08-18T16:46:04.000Z</published>
-    <updated>2022-08-18T16:46:04.101Z</updated>
+    <title>无题</title>
+    <link href="https://jy324.github.io/%E6%97%A0%E9%A2%98.html"/>
+    <id>https://jy324.github.io/%E6%97%A0%E9%A2%98.html</id>
+    <published>2022-09-20T09:54:35.000Z</published>
+    <updated>2022-09-20T09:57:02.808Z</updated>
+    
+    <content type="html"><![CDATA[<p>1991年，已经从党和国家领导人岗位上退下来的耿飚，重返半个世纪前战斗过的<a href="https://www.zhihu.com/search?q=%E9%99%87%E4%B8%9C%E5%BA%86%E9%98%B3%E5%8E%BF&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22article%22,%22sourceId%22:%22452517515%22%7D">陇东庆阳县</a>（即现在的甘肃省庆城县）。晚饭后，他住的招待所外忽然人声鼎沸，黑压压来了一群“告状”的老百姓，诉说他们对一些县乡干部的不满，怎么劝说也不肯离开。耿飚随后召集省地县的干部作了一次谈话。他不批评、不责备，却讲了一件往事。</p><p>50年前，耿飚任副旅长的一二九师三八五旅就曾驻扎过这里。当时，一个战士损害了当地群众的利益，旅部决定按纪律枪毙他。老百姓知道后，也是黑压压来了一大群人，为这个违纪的战士求情。耿飚对父老乡亲们说，纪律是必须坚决执行的。</p><p>于是老百姓都跪下了，哭着说共产党都是好人，就饶了这个战士，让他戴罪立功，上前线多杀几个鬼子吧！耿飚反复说明八路军的军纪，可老百姓一个也不起来。最后，耿飚只得流泪接受了群众的要求。</p><p>讲到这里，耿飚激动地大声问道：<strong>“现在，我要问问在座的你们这些人，不管哪一个，如果犯了事，老百姓还会替你们求情吗？”</strong>全场顿时鸦雀无声。</p><p>这就是“耿飚之问”，此问可谓振聋发聩，撼人心弦，问出了几十年来党群关系、干群关系的巨大反差，值得当今党员领导干部细细品味和深思。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;1991年，已经从党和国家领导人岗位上退下来的耿飚，重返半个世纪前战斗过的&lt;a href=&quot;https://www.zhihu.com/search?q=%E9%99%87%E4%B8%9C%E5%BA%86%E9%98%B3%E5%8E%BF&amp;search_source=</summary>
+      
+    
+    
+    
+    <category term="History" scheme="https://jy324.github.io/categories/History/"/>
+    
+    
+    <category term="Revolution" scheme="https://jy324.github.io/tags/Revolution/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Proxifier与wsl2不兼容</title>
+    <link href="https://jy324.github.io/Proxifier%E4%B8%8Ewsl2%E4%B8%8D%E5%85%BC%E5%AE%B9.html"/>
+    <id>https://jy324.github.io/Proxifier%E4%B8%8Ewsl2%E4%B8%8D%E5%85%BC%E5%AE%B9.html</id>
+    <published>2022-09-19T04:04:02.000Z</published>
+    <updated>2022-09-19T04:36:53.136Z</updated>
+    
+    <content type="html"><![CDATA[<p>先安装的wsl2，后使用 Proxifier ，然后就打不开wsl2了。</p><p><img src="https://s2.loli.net/2022/09/19/LEZRwKzHiA6UTCt.png" alt="image-20220919120431843"></p><p>解决：<a href="https://github.com/dyingsu/nolsp">https://github.com/dyingsu/nolsp</a></p><p>NoLsp_fix_WSL2_参考的对象类型不支持尝试的操作.exe</p><p>下载此软件(原始链接_<a href="http://www.proxifier.com/tmp/Test20200228/NoLsp.exe">www.proxifier.com/tmp/Test20200228/NoLsp.exe</a>) 管理员身份运行CMD输入： NoLsp.exe C:\windows\system32\wsl.exe </p><p>产生原因和解决方法分析： </p><p>代理软件和wsl2的sock端口冲突，使用netsh winsock reset重置修复。</p><p>如果Winsock LSP DLL被加载到其进程中，则wsl.exe将显示此错误。最简单的解决方案是对wsl.exe使用WSCSetApplicationCategory WinAPI调用来防止这种情况。在后台，该调用在HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WinSock2\Parameters\AppId_Catalog中为wsl.exe创建一个条目。 这将告诉Windows不要将LSP DLL加载到wsl.exe进程中</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;先安装的wsl2，后使用 Proxifier ，然后就打不开wsl2了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.loli.net/2022/09/19/LEZRwKzHiA6UTCt.png&quot; alt=&quot;image-20220919120431843&quot;&gt;&lt;</summary>
+      
     
     
     
     
+    <category term="System" scheme="https://jy324.github.io/tags/System/"/>
+    
+    <category term="踩坑" scheme="https://jy324.github.io/tags/%E8%B8%A9%E5%9D%91/"/>
     
   </entry>
   
@@ -504,31 +540,6 @@
     
     
     <category term="Linux" scheme="https://jy324.github.io/tags/Linux/"/>
-    
-    <category term="C 语言" scheme="https://jy324.github.io/tags/C-%E8%AF%AD%E8%A8%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>include guard</title>
-    <link href="https://jy324.github.io/Notes/include-guard.html"/>
-    <id>https://jy324.github.io/Notes/include-guard.html</id>
-    <published>2022-07-16T13:39:39.000Z</published>
-    <updated>2022-07-20T06:46:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>来源：<a href="https://en.wikipedia.org/wiki/Include_guard">https://en.wikipedia.org/wiki/Include_guard</a></p><p>记录以下自己看了啥，怕以后忘了，绝对不是想要水博客。</p><p>In the <a href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a> and <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a> programming languages, an <strong>#include guard</strong>, sometimes called a <strong>macro guard</strong>, <strong>header guard</strong> or <strong>file guard</strong>, is a particular construct used to avoid the problem of <em>double inclusion</em> when dealing with the <a href="https://en.wikipedia.org/wiki/Include_directive">include directive</a>.</p><p>The <a href="https://en.wikipedia.org/wiki/C_preprocessor">C preprocessor</a> processes <a href="https://en.wikipedia.org/wiki/Preprocessor_directive">directives</a> of the form <code>#include &lt;file&gt;</code> in a <a href="https://en.wikipedia.org/wiki/Source_file">source file</a> by locating the associated <code>file</code> on <a href="https://en.wikipedia.org/wiki/File_system">disk</a> and <a href="https://en.wikipedia.org/wiki/Transclusion">transcluding</a> (“including”) its contents into a copy of the source file known as the <a href="https://en.wikipedia.org/wiki/Translation_unit_(programming)">translation unit</a>, replacing the include directive in the process. The files included in this regard are generally <a href="https://en.wikipedia.org/wiki/Header_file">header files</a>, which typically contain <a href="https://en.wikipedia.org/wiki/Declaration_(computer_programming)">declarations</a> of <a href="https://en.wikipedia.org/wiki/Function_(computer_programming)">functions</a> and <a href="https://en.wikipedia.org/wiki/Class_(computer_programming)">classes</a> or <a href="https://en.wikipedia.org/wiki/Struct">structs</a>. If certain C or C++ language constructs <a href="https://en.wikipedia.org/wiki/One_Definition_Rule">are defined twice</a>, the resulting translation unit <a href="https://en.wikipedia.org/wiki/Compilation_error">is invalid</a>. #include guards prevent this erroneous construct from arising by the double inclusion mechanism.</p><p>The addition of #include guards to a header file is one way to make that file <a href="https://en.wikipedia.org/wiki/Idempotent">idempotent</a>. Another construct to combat <em>double inclusion</em> is <a href="https://en.wikipedia.org/wiki/Pragma_once">#pragma once</a>, which is non-standard but nearly universally supported among C and C++ <a href="https://en.wikipedia.org/wiki/List_of_compilers">compilers</a>.</p><span id="more"></span><h2 id="Use-of-include-guards"><a href="#Use-of-include-guards" class="headerlink" title="Use of #include guards"></a>Use of #include guards</h2><h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>In this section, the same code is used with the addition of #include guards. The <a href="https://en.wikipedia.org/wiki/C_preprocessor">C preprocessor</a> preprocesses the header files, including and further preprocessing them <a href="https://en.wikipedia.org/wiki/Recursion_(computer_science)">recursively</a>. This will result in a correct source file, as we will see.</p><h4 id="File-“grandparent-h”"><a href="#File-“grandparent-h”" class="headerlink" title="File “grandparent.h”"></a>File “grandparent.h”</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#ifndef GRANDPARENT_H</span><br><span class="line">#define GRANDPARENT_H</span><br><span class="line"></span><br><span class="line">struct foo &#123;</span><br><span class="line">    int member;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#endif /* GRANDPARENT_H */</span><br></pre></td></tr></table></figure><h4 id="File-“parent-h”"><a href="#File-“parent-h”" class="headerlink" title="File “parent.h”"></a>File “parent.h”</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;grandparent.h&quot;</span><br></pre></td></tr></table></figure><h4 id="File-“child-c”"><a href="#File-“child-c”" class="headerlink" title="File “child.c”"></a>File “child.c”</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;grandparent.h&quot;</span><br><span class="line">#include &quot;parent.h&quot;</span><br></pre></td></tr></table></figure><h4 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct foo &#123;</span><br><span class="line">    int member;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>Here, the first inclusion of “grandparent.h” has the macro <code>GRANDPARENT_H</code> defined. When “child.c” includes “grandparent.h” at the second time, as the <code>#ifndef</code> test returns false, the preprocessor skips down to the <code>#endif</code>, thus avoiding the second definition of <code>struct foo</code>. The program compiles correctly.</p><h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3><p>Different <a href="https://en.wikipedia.org/wiki/Naming_conventions_(programming)">naming conventions</a> for the guard <a href="https://en.wikipedia.org/wiki/Macro_(computer_science)">macro</a> may be used by different <a href="https://en.wikipedia.org/wiki/Programmer">programmers</a>. Other common forms of the above example include <code>GRANDPARENT_INCLUDED</code>, <code>CREATORSNAME_YYYYMMDD_HHMMSS</code> (with the appropriate time information substituted), and names generated from a <a href="https://en.wikipedia.org/wiki/Universally_Unique_Identifier">UUID</a>. (However, <a href="https://en.wikipedia.org/wiki/Identifier_(computer_programming)">names</a> starting with one underscore and a <a href="https://en.wikipedia.org/wiki/Capital_letter">capital letter</a> or any name containing double underscore, such as <code>_GRANDPARENT__H</code> and <code>__GRANDPARENT_H</code>, are reserved to the language implementation and should not be used by the user.[<a href="https://en.wikipedia.org/wiki/Include_guard#cite_note-1">1]</a>[<a href="https://en.wikipedia.org/wiki/Include_guard#cite_note-2">2]</a>)</p><p>Of course, it is important to avoid duplicating the same include-guard macro name in different header files, as including the 1st will prevent the 2nd from being included, leading to the loss of any declarations, inline definitions, or other #includes in the 2nd header.</p><h2 id="Difficulties"><a href="#Difficulties" class="headerlink" title="Difficulties"></a>Difficulties</h2><p>In order for #include guards to work properly, each guard must test and conditionally set a different preprocessor macro. Therefore, a project using #include guards must work out a coherent naming scheme for its include guards, and make sure its scheme doesn’t conflict with that of any third-party headers it uses, or with the names of any globally visible macros.</p><p>For this reason, most C and C++ implementations provide a non-standard <code>#pragma once</code> directive. This directive, inserted at the top of a header file, will ensure that the file is included only once.</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;来源：&lt;a href=&quot;https://en.wikipedia.org/wiki/Include_guard&quot;&gt;https://en.wikipedia.org/wiki/Include_guard&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;记录以下自己看了啥，怕以后忘了，绝对不是想要水博客。&lt;/p&gt;
-&lt;p&gt;In the &lt;a href=&quot;https://en.wikipedia.org/wiki/C_(programming_language)&quot;&gt;C&lt;/a&gt; and &lt;a href=&quot;https://en.wikipedia.org/wiki/C%2B%2B&quot;&gt;C++&lt;/a&gt; programming languages, an &lt;strong&gt;#include guard&lt;/strong&gt;, sometimes called a &lt;strong&gt;macro guard&lt;/strong&gt;, &lt;strong&gt;header guard&lt;/strong&gt; or &lt;strong&gt;file guard&lt;/strong&gt;, is a particular construct used to avoid the problem of &lt;em&gt;double inclusion&lt;/em&gt; when dealing with the &lt;a href=&quot;https://en.wikipedia.org/wiki/Include_directive&quot;&gt;include directive&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/C_preprocessor&quot;&gt;C preprocessor&lt;/a&gt; processes &lt;a href=&quot;https://en.wikipedia.org/wiki/Preprocessor_directive&quot;&gt;directives&lt;/a&gt; of the form &lt;code&gt;#include &amp;lt;file&amp;gt;&lt;/code&gt; in a &lt;a href=&quot;https://en.wikipedia.org/wiki/Source_file&quot;&gt;source file&lt;/a&gt; by locating the associated &lt;code&gt;file&lt;/code&gt; on &lt;a href=&quot;https://en.wikipedia.org/wiki/File_system&quot;&gt;disk&lt;/a&gt; and &lt;a href=&quot;https://en.wikipedia.org/wiki/Transclusion&quot;&gt;transcluding&lt;/a&gt; (“including”) its contents into a copy of the source file known as the &lt;a href=&quot;https://en.wikipedia.org/wiki/Translation_unit_(programming)&quot;&gt;translation unit&lt;/a&gt;, replacing the include directive in the process. The files included in this regard are generally &lt;a href=&quot;https://en.wikipedia.org/wiki/Header_file&quot;&gt;header files&lt;/a&gt;, which typically contain &lt;a href=&quot;https://en.wikipedia.org/wiki/Declaration_(computer_programming)&quot;&gt;declarations&lt;/a&gt; of &lt;a href=&quot;https://en.wikipedia.org/wiki/Function_(computer_programming)&quot;&gt;functions&lt;/a&gt; and &lt;a href=&quot;https://en.wikipedia.org/wiki/Class_(computer_programming)&quot;&gt;classes&lt;/a&gt; or &lt;a href=&quot;https://en.wikipedia.org/wiki/Struct&quot;&gt;structs&lt;/a&gt;. If certain C or C++ language constructs &lt;a href=&quot;https://en.wikipedia.org/wiki/One_Definition_Rule&quot;&gt;are defined twice&lt;/a&gt;, the resulting translation unit &lt;a href=&quot;https://en.wikipedia.org/wiki/Compilation_error&quot;&gt;is invalid&lt;/a&gt;. #include guards prevent this erroneous construct from arising by the double inclusion mechanism.&lt;/p&gt;
-&lt;p&gt;The addition of #include guards to a header file is one way to make that file &lt;a href=&quot;https://en.wikipedia.org/wiki/Idempotent&quot;&gt;idempotent&lt;/a&gt;. Another construct to combat &lt;em&gt;double inclusion&lt;/em&gt; is &lt;a href=&quot;https://en.wikipedia.org/wiki/Pragma_once&quot;&gt;#pragma once&lt;/a&gt;, which is non-standard but nearly universally supported among C and C++ &lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_compilers&quot;&gt;compilers&lt;/a&gt;.&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Notes" scheme="https://jy324.github.io/categories/Notes/"/>
-    
     
     <category term="C 语言" scheme="https://jy324.github.io/tags/C-%E8%AF%AD%E8%A8%80/"/>
     
